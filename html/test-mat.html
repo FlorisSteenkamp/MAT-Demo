@@ -1,0 +1,242 @@
+<uib-accordion
+	close-others="false"
+>
+	<uib-accordion-group 
+		heading="more..." 
+		is-open="model.config.configOpen"
+	>
+		<form class="form-inline test-mat-form">
+		  	<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.minY" type="checkbox">
+	    			Topmosts
+		    	</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input ng-model="model.config.toDraw.bezier_" type="checkbox">
+					(pre) bezier
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input ng-model="model.config.toDraw.looseBoundingBox_" type="checkbox">
+					(pre) Loose bbs
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input ng-model="model.config.toDraw.tightBoundingBox_" type="checkbox">
+					(pre) Tight bbs
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input ng-model="model.config.toDraw.boundingHull_" type="checkbox">
+					(pre) hulls
+				</label>
+			</div>
+		  	<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.looseBoundingBox" type="checkbox">
+	    			Loose bbs
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.tightBoundingBox" type="checkbox">
+	    			Tight bbs
+		    	</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input ng-model="model.config.toDraw.boundingHull" type="checkbox">
+					hulls
+				</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.sharpCorner" type="checkbox">
+		    		Sharp corners
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.dullCorner" type="checkbox">
+		    		Dull corners
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.oneProng" type="checkbox">
+		    		1-prongs
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.oneProngAtDullCorner" type="checkbox">
+		    		1-prongs (at dull corner)
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.twoProng_regular" type="checkbox">
+		    		2-prongs
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.twoProng_holeClosing" type="checkbox">
+		    		2-prongs (hole closing)
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.threeProng" type="checkbox">
+		    		3-prongs
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.mat" type="checkbox">
+		    		MAT
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.sat" type="checkbox">
+		    		SAT
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.container" type="checkbox">
+		    		Containers
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.maxVertex" type="checkbox">
+		    		Max vertices
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.leaves" type="checkbox">
+		    		Leaves
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.culls" type="checkbox">
+		    		Culls
+		    	</label>
+			</div>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.toDraw.intersection" type="checkbox">
+		    		Intersections
+		    	</label>
+			</div>
+			<div class="form-group">
+				<label>Click</label>
+				<div class="btn-group">
+					<!--
+					<label class="btn btn-default" ng-model="model.clickFor" uib-btn-radio="'vertex'" uncheckable>vertex</label>
+					<label class="btn btn-default" ng-model="model.clickFor" uib-btn-radio="'oneProng'" uncheckable>1-prong</label>
+					-->
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'bezier_'" uncheckable>(pre) bezier</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'looseBoundingBox_'" uncheckable>(pre) lbb</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'tightBoundingBox_'" uncheckable>(pre) tbb</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'boundingHull_'" uncheckable>(pre) bh</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'twoProng'" uncheckable>2-prong</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'threeProng'" uncheckable>3-prong</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'bezier'" uncheckable>bezier</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'container'" uncheckable>container</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'loopSimplified'" uncheckable>loop (simplified)</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'loopset'" uncheckable>loop set</label>
+					<label class="btn btn-default" ng-model="model.config.clickFor" uib-btn-radio="'cp'" uncheckable>cp</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Show delay</label>
+				<input 
+		    		style="width:90px"
+		    		ng-model="model.config.showDelay" 
+					type="number" 
+					min="0" 
+					step="250"
+		    		class="form-control"
+		    	>
+			</div>
+			<div class="form-group">
+				<label>Sat scale</label>
+				<input 
+		    		style="width:90px"
+		    		ng-model="model.config.satScale" 
+					type="number" 
+					min="1" 
+					step="0.05"
+		    		class="form-control"
+		    	>
+			</div>
+			<label>Show clicked 3-prong</label>
+			<div class="checkbox">
+		    	<label>
+		    		<input ng-model="model.config.threeProng.spokes" type="checkbox">
+	    			spokes
+		    	</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input ng-model="model.config.threeProng.trace" type="checkbox">
+					trace
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input ng-model="model.config.threeProng.boundary" type="checkbox">
+					boundary
+				</label>
+			</div>
+		</form>
+	</uib-accordion-group>
+</uib-accordion>
+<span style="position:absolute;top:8px;left:230px">
+	<a href="./docs/index.html">
+		docs
+	</a>
+	<span style="display:inline-block; width: 10px"></span>
+	<a href="https://github.com/FlorisSteenkamp/MAT">
+		lib
+	</a>
+</span>
+<form class="form-inline" style="margin:3px; position:fixed; top:250px">
+	<select
+		style="padding:3px 6px 3px 6px; height:28px; background-color: pink"
+		class="form-control inline"
+		ng-model="model.config.vector"
+		ng-options="vector as vector.name for vector in model.config.vectors track by vector.name"
+	>
+	</select>
+	<span id="x" style="position:absolute;top:3px;left:190px">
+		x
+	</span>
+	<span id="y" style="position:absolute;top:3px;left:260px">
+		y
+	</span>
+</form>
+<svg 
+	xmlns="http://www.w3.org/2000/svg";
+	version="1.1"
+	id="svg"
+	x="0px" 
+	y="0px"
+	vbox="{{model.config.viewbox}}"
+	style="width: 100%;">
+	<path 
+		id="svg-path"
+		class="shape"
+		ng-attr-d="{{model.path}}"
+	/>
+</svg>

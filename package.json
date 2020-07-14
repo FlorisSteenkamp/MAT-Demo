@@ -1,0 +1,45 @@
+{
+    "name": "mat-demo",
+    "description": "Demo for MAT/SAT.",
+    "version": "0.0.1",
+    "author": {
+        "name": "Floris Steenkamp"
+    },
+    "license": "MIT",
+    "main": "node/index.js",
+    "typings": "node/index",
+    "private": false,
+    "dependencies": {
+        "@material-ui/core": "^4.10.2",
+        "@material-ui/icons": "^4.9.1",
+        "@types/ramda": "^0.27.6",
+        "@types/react-dom": "^16.9.8",
+        "@types/react-router-dom": "^5.1.5",
+        "@uirouter/angularjs": "^1.0.26",
+        "flo-bezier3": "^3.0.0",
+        "flo-boolean": "^1.0.0",
+        "flo-lines-intersections": "^1.0.1",
+        "flo-ll-rb-tree": "^0.1.2",
+        "flo-mat": "^1.2.0",
+        "flo-memoize": "^0.1.2",
+        "flo-poly": "^4.0.0",
+        "flo-vector2d": "^3.0.0",
+        "flo-draw": "^1.0.0",
+        "ramda": "^0.27.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-router-dom": "^5.2.0",
+        "rxjs": "^6.5.5"
+    },
+    "devDependencies": {
+        "@stackblitz/sdk": "^1.4.0",
+        "@types/node": "^8.10.61",
+        "copy-webpack-plugin": "^4.6.0",
+        "source-map-loader": "^0.2.4",
+        "ts-loader": "^4.3.1",
+        "tsify": "^3.0.3",
+        "typescript": "^3.9.5",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.12"
+    }
+}
