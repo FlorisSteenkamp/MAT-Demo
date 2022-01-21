@@ -21,6 +21,8 @@ function updDebugGlobal(
 
     let d = (window as any).d = (window as any)._debug_;
 
+    
+
     //console.log(d)
     //d.directives.stopAfterHoleClosers = true;
     //d.directives.stopAfterTwoProngsNum = 13;

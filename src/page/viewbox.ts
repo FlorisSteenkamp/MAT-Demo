@@ -1,9 +1,8 @@
-
-import { getBounds } from 'flo-bezier3';
+import { getBounds_ } from "../get-bounds-";
 
 
 function getLoopBounds(pss: number[][][]) {
-    let bounds = pss.map(ps => getBounds(ps))
+    let bounds = pss.map(ps => getBounds_(ps))
     return {
         minX: Math.min(...bounds.map(bound => bound.box[0][0])),
         maxX: Math.max(...bounds.map(bound => bound.box[1][0])),

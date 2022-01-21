@@ -1,5 +1,7 @@
 
 let vectors = [
+    { name: 'matthew',
+      url: 'html/vectors/matthew.svg', },
     { name: 'bb',
       url: 'html/vectors/bb.svg', },
     { name: 'intersecting1',

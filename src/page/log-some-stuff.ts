@@ -1,7 +1,8 @@
 
 declare var _debug_: Debug;
 
-import { Debug } from 'flo-mat';
+//import { Debug } from 'flo-mat';
+import { Debug } from '../debug';
 
 
 function logSomeStuff(timingAll: number) {

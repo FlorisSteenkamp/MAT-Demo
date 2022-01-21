@@ -7,7 +7,7 @@ import { _upd } from './state-control/upd';
 import { State } from './state/state';
 import { StateControl } from './state-control/state-control';
 import { useStyles } from './styles';
-import { getInitialState } from './get-initial-state';
+import { getInitialState } from './state/get-initial-state';
 import { defaultTransientState } from './state/default-state';
 import { Page } from './page/page';
 //import { elementDocs } from './elements/docs';

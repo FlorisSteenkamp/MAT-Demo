@@ -20,7 +20,8 @@ const Checkbox = memo(function SimpleCheckbox(props: Props) {
     }
 
     return (
-        <div style={styles?.div}>
+        //<div style={styles?.div}>
+        <div style={styles ? styles.div : null}>
             <input type="checkbox" id={idStr} onChange={onChange} checked={checked} />
             <label htmlFor={idStr}>{text}</label>
         </div>

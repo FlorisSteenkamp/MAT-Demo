@@ -1,7 +1,7 @@
  
-import { getX, getY, getDx, getDy } from "flo-bezier3";
+import { getXY, getDxy } from "flo-bezier3";
 import { gaussQuadrature } from 'flo-gauss-quadrature';
-import { evaluate as polyEvaluate } from 'flo-poly';
+import { Horner as polyEvaluate } from 'flo-poly';
 import { Loop } from "flo-mat";
 import { getLoopArea } from 'flo-boolean';
 
@@ -19,10 +19,8 @@ function getLoopCentroid(loop: Loop) {
     for (let curve of loop.curves) {
         let ps = curve.ps;
 
-        let x = getX(ps);
-        let y = getY(ps);
-        let dx = getDx(ps);
-        let dy = getDy(ps);
+        let [x,y] = getXY(ps);
+        let [dx,dy] = getDxy(ps);
 
         let _x = gaussQuadrature(evaluateIntergral([x,x,dy]), [0,1], 16);
         let _y = gaussQuadrature(evaluateIntergral([y,y,dx]), [0,1], 16);
