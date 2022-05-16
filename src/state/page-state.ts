@@ -1,6 +1,5 @@
-
-import { ToDraw } from './to-draw';
-import { DeducedState } from './deduced-state';
+import { ToDraw } from './to-draw.js';
+import { DeducedState } from './deduced-state.js';
 
 
 type ClickFor = 

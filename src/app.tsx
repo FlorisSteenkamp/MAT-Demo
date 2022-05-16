@@ -1,22 +1,22 @@
-
 import * as React from 'react';
 import { useState } from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { _upd } from './state-control/upd';
-import { State } from './state/state';
-import { StateControl } from './state-control/state-control';
-import { useStyles } from './styles';
-import { getInitialState } from './state/get-initial-state';
-import { defaultTransientState } from './state/default-state';
-import { Page } from './page/page';
-//import { elementDocs } from './elements/docs';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { _upd } from './state-control/upd.js';
+import { State } from './state/state.js';
+import { StateControl } from './state-control/state-control.js';
+import { getInitialState } from './state/get-initial-state.js';
+import { defaultTransientState } from './state/default-state.js';
+import { Page } from './page/page.js';
+import { ThemeProvider } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
+
+
+const theme = createTheme();
 
 
 function App() {
-    const classes = useStyles();
     const [appState, setAppState] = useState(getInitialState);
-    //const [transientState, setTransientState] = useState(() => defaultTransientState);
     const [state] = useState((): State => ({ appState }));
     const [{upd, upd$}] = useState(() => _upd(state, setAppState));
     const [stateControl] = useState((): StateControl => ({ 
@@ -27,16 +27,13 @@ function App() {
 
     return (
         <Router>
-        <main className={classes.content}>
-            <Switch>
-                <Route path="/">
-                    <Page
-						stateControl={stateControl}
-						pageState={pageState}
-                    />
-                </Route>
-            </Switch>
+        <ThemeProvider theme={theme}>
+        <main>
+            <Routes>
+                <Route path="/" element={<Page stateControl={stateControl} pageState={pageState} />} />
+            </Routes>
         </main>
+        </ThemeProvider>
         </Router>
     );
 }

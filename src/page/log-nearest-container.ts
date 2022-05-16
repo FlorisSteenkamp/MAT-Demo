@@ -1,8 +1,7 @@
-
 declare var _debug_: Debug; 
 
-import { Debug } from '../debug';
 import { getClosestSquareDistanceToRect } from 'flo-mat';
+import { Debug } from '../debug.js';
 
 
 function logNearestContainer(g: SVGGElement, p: number[], showDelay = 1000) {

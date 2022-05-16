@@ -1,6 +1,4 @@
-
-import { AppState } from "./app-state";
-import { TransientState } from "./transient-state";
+import { AppState } from './app-state.js';
 
 
 interface State {

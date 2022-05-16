@@ -1,10 +1,9 @@
-
-import { StateControl } from '../state-control/state-control';
 import { getPathsFromStr, findMats } from 'flo-mat';
-import { getSatsFromGeneratedMats } from './get-sats-from-generated-mats';
-import { vectors } from '../state/vectors';
-import { updDebugGlobal } from "./upd-debug-global";
-import { toViewBoxStr, getViewBoxForShape } from './viewbox';
+import { StateControl } from '../state-control/state-control.js';
+import { getSatsFromGeneratedMats } from './get-sats-from-generated-mats.js';
+import { vectors } from '../state/vectors.js';
+import { updDebugGlobal } from './upd-debug-global.js';
+import { getViewBoxForShape } from './viewbox.js';
 
 
 const IS_DEBUG_ON = true;
@@ -47,7 +46,10 @@ async function loadDeducedProps(
         // Resets _debug_
         updDebugGlobal(stateControl, IS_DEBUG_ON);
         //let mats = findMats(bezierLoops, 1.0001, 1);
-        let mats = findMats(bezierLoops, 1.001, 2);
+        // let mats = findMats(bezierLoops, 1.001, 2);
+        // let mats = findMats(bezierLoops,0.4,100);
+        // let mats = findMats(bezierLoops,0.4,4);
+        let mats = findMats(bezierLoops);
         stateControl.transientState.mats = mats;
         // Basically just populates _debug_.generated
         //getSatsFromGeneratedMats(stateControl, mats);

@@ -1,5 +1,4 @@
-
-import { SvgVector } from './svg-vector';
+import { SvgVector } from './svg-vector.js';
 
 
 function showAddVectorModal($uibModal: any) {

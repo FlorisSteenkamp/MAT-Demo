@@ -1,10 +1,9 @@
-
 declare var _debug_: Debug; 
 
-import { Debug } from '../debug';
-import { squaredDistanceBetweenPointAndLineSegment } from 'flo-vector2d';
-import { evalDeCasteljau, length } from 'flo-bezier3';
 import { drawFs } from 'flo-draw';
+import { evalDeCasteljau, length } from 'flo-bezier3';
+import { squaredDistanceBetweenPointAndLineSegment } from 'flo-vector2d';
+import { Debug } from '../debug.js';
 
 
 function logNearestLoopSet(g: SVGGElement, p: number[], showDelay = 1000) {

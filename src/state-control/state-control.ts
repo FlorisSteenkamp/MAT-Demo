@@ -1,7 +1,6 @@
-
-import { State } from '../state/state';
-import { Upd, UpdFunction } from './upd';
-import { TransientState } from '../state/transient-state';
+import { State } from '../state/state.js';
+import { Upd, UpdFunction } from './upd.js';
+import { TransientState } from '../state/transient-state.js';
 
 
 interface StateControl {

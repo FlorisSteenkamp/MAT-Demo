@@ -1,6 +1,5 @@
-
-import { CpNode, IDebugElems, Mat } from "flo-mat";
-import { DebugElems } from "../debug";
+import { CpNode, Mat } from "flo-mat";
+import { DebugElems } from "../debug.js";
 
 
 interface TransientState {

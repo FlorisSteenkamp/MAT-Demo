@@ -1,11 +1,7 @@
-
-import { State } from "../state/state";
-import { AppState } from "../state/app-state";
-import { _updObj } from "./upd-obj";
-import { Subscription, Subject } from 'rxjs';
-import { throttleTime } from 'rxjs/operators';
-import { async } from 'rxjs/internal/scheduler/async';
-import { NestedObj } from './nested-obj';
+import { State } from '../state/state.js';
+import { AppState } from '../state/app-state.js';
+import { _updObj } from './upd-obj.js';
+import { NestedObj } from './nested-obj.js';
 
 
 type UpdFunction = <T extends NestedObj>(v: T, newV: Partial<T>) => T;

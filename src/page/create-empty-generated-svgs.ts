@@ -1,5 +1,4 @@
-
-import { DebugElems } from "../debug";
+import { DebugElems } from "../debug.js";
 
 
 function createEmptyGeneratedSvgs(): { [T in keyof DebugElems]: SVGElement[][] }  {
@@ -33,6 +32,8 @@ function createEmptyGeneratedSvgs(): { [T in keyof DebugElems]: SVGElement[][] }
         vertex               : [],
         cpNode               : [],
         container            : [],
+        loopPre              : [],
+        loopsPre             : [],
     };
 }
 

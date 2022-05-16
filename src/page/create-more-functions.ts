@@ -1,12 +1,9 @@
-
 declare var _debug_: Debug; 
 
 import { drawFs } from 'flo-draw';
-import { Debug, BezierPiece } from 'flo-mat';
-
-import { showAndLogCp } from './show-and-log-cp';
-import { getBoundaryPieceBeziers, CpNode } from 'flo-mat';
-import { StateControl } from '../state-control/state-control';
+import { getBoundaryPieceBeziers, Debug, BezierPiece } from 'flo-mat';
+import { showAndLogCp } from './show-and-log-cp.js';
+import { StateControl } from '../state-control/state-control.js';
 
 
 function createMoreFunctions(stateControl: StateControl) {

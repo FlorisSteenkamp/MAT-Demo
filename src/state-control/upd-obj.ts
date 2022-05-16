@@ -1,7 +1,6 @@
-
 //import { assocPath } from "./assoc-path";
 import { assocPath } from "ramda";
-import { getObjPath } from "./get-obj-path";
+import { getObjPath } from "./get-obj-path.js";
 
 
 // TODO - change getObjPath below to do depth-first traversal - should be much quicker to find relevant value

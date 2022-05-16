@@ -1,16 +1,16 @@
-
 declare var _debug_: Debug; 
 
-import { Debug } from '../debug';
 import { squaredDistanceBetween, centroid } from 'flo-vector2d';
-import { closestPointOnBezierPrecise } from 'flo-bezier3';
+import { closestPointOnBezier } from 'flo-bezier3';
+import { Debug } from '../debug.js';
+
 
 function logBezier_(g: SVGGElement, p: number[], showDelay = 1000) {
     let bestPs;
     let bestDistance = Number.POSITIVE_INFINITY;
 
     for (let ps of _debug_.generated.elems.bezier_) {
-        let bezierPoint = closestPointOnBezierPrecise(ps, p);
+        let bezierPoint = closestPointOnBezier(ps, p);
         let d = squaredDistanceBetween(bezierPoint.p, p);
         
         if (d < bestDistance) {

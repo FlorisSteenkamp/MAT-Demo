@@ -1,11 +1,9 @@
-
-import { AppState } from './app-state';
-import { vectors } from './vectors';
-import { TransientState } from './transient-state';
-import { PageState } from './page-state';
-import { createEmptyGeneratedSvgs } from '../page/create-empty-generated-svgs';
-import { DebugElems } from '../debug';
-import { DeducedState } from './deduced-state';
+import { AppState } from './app-state.js';
+import { TransientState } from './transient-state.js';
+import { PageState } from './page-state.js';
+import { createEmptyGeneratedSvgs } from '../page/create-empty-generated-svgs.js';
+import { DebugElems } from '../debug.js';
+import { DeducedState } from './deduced-state.js';
 
 
 const defaultTransientState: TransientState = {
@@ -51,6 +49,8 @@ const defaultToDraw: { [T in keyof DebugElems]: boolean } = {
     culls                : false,
     intersection         : false,
     container            : false,
+    loopPre              : false,
+    loopsPre             : false
 }
 
 

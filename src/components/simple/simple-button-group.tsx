@@ -1,6 +1,4 @@
-
 import * as React from 'react';
-//import { memo } from 'react';
 
 
 interface Props<T extends string> {

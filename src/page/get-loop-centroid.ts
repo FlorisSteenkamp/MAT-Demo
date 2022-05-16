@@ -1,7 +1,6 @@
- 
-import { getXY, getDxy } from "flo-bezier3";
+import { toPowerBasis, toPowerBasis_1stDerivative } from "flo-bezier3";
 import { gaussQuadrature } from 'flo-gauss-quadrature';
-import { Horner as polyEvaluate } from 'flo-poly';
+import { Horner } from 'flo-poly';
 import { Loop } from "flo-mat";
 import { getLoopArea } from 'flo-boolean';
 
@@ -19,8 +18,8 @@ function getLoopCentroid(loop: Loop) {
     for (let curve of loop.curves) {
         let ps = curve.ps;
 
-        let [x,y] = getXY(ps);
-        let [dx,dy] = getDxy(ps);
+        let [x,y] = toPowerBasis(ps);
+        let [dx,dy] = toPowerBasis_1stDerivative(ps);
 
         let _x = gaussQuadrature(evaluateIntergral([x,x,dy]), [0,1], 16);
         let _y = gaussQuadrature(evaluateIntergral([y,y,dx]), [0,1], 16);
@@ -37,9 +36,9 @@ function getLoopCentroid(loop: Loop) {
 
 function evaluateIntergral(polys: number[][]) {
     return (t: number) =>
-        polyEvaluate(polys[0], t) * 
-        polyEvaluate(polys[1], t) * 
-        polyEvaluate(polys[2], t);
+        Horner(polys[0], t) * 
+        Horner(polys[1], t) * 
+        Horner(polys[2], t);
 }
 
 

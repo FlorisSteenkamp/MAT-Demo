@@ -1,30 +1,30 @@
-
 declare var _debug_: Debug;
 
 import * as React from 'react';
+import { drawFs } from 'flo-draw';
 import { memo, useRef, useEffect } from 'react';
-import { Container, Slider, Typography, FormControl, InputLabel, MenuItem, Select, Grid } from '@material-ui/core';
-import { StateControl } from '../state-control/state-control';
-import { useStyles } from './styles';
-import { IDebugElems } from 'flo-mat';
-import { Debug } from '../debug';
-import { ToDraw } from '../state/to-draw';
-import { deleteSvgs } from './delete-svgs';
-import { getSatsFromGeneratedMats } from './get-sats-from-generated-mats';
-import { Checkbox } from '../components/simple/simple-checkbox';
-//import { Select } from '../components/simple/simple-select-from-arr';
-import { vectors } from '../state/vectors';
-import { ValueSelect } from '../components/simple/value-select';
-import { PageState } from '../state/page-state';
-import { loadDeducedProps, loadPath } from './load-deduced-props';
-import { logSomeStuff } from './log-some-stuff';
-import { logNearestBezier } from './log-nearest-bezier';
-import { getViewBoxForShape, toViewBoxStr } from './viewbox';
-import { pointCpClicked } from './point-cp-clicked';
-import { logNearestLoopSet } from './log-nearest-loop-set';
-import { logNearestLoopSimplified } from './log-nearest-loop-simplified';
-import { logNearestContainer } from './log-nearest-container';
-import { logBezier_, logLooseBb_, logTightBb_, logBHull_ } from './log-bbs';
+import { CpNode, findMats, IDebugElems, getPathsFromStr } from 'flo-mat';
+import { Container, Slider, Typography, FormControl, InputLabel, MenuItem, Select, Grid, SelectChangeEvent } from '@mui/material';
+import { StateControl } from '../state-control/state-control.js';
+import { useStyles } from './styles.js';
+import { Debug } from '../debug.js';
+import { ToDraw } from '../state/to-draw.js';
+import { deleteSvgs } from './delete-svgs.js';
+import { getSatsFromGeneratedMats } from './get-sats-from-generated-mats.js';
+import { Checkbox } from '../components/simple/simple-checkbox.js';
+//import { Select } from '../components/simple/simple-select-from-arr.js';
+import { vectors } from '../state/vectors.js';
+// import { ValueSelect } from '../components/simple/value-select.js';
+import { PageState } from '../state/page-state.js';
+import { loadDeducedProps, loadPath } from './load-deduced-props.js';
+import { logSomeStuff } from './log-some-stuff.js';
+import { logNearestBezier } from './log-nearest-bezier.js';
+import { getViewBoxForShape, toViewBoxStr } from './viewbox.js';
+import { pointCpClicked } from './point-cp-clicked.js';
+import { logNearestLoopSet } from './log-nearest-loop-set.js';
+import { logNearestLoopSimplified } from './log-nearest-loop-simplified.js';
+import { logNearestContainer } from './log-nearest-container.js';
+import { logBezier_, logLooseBb_, logTightBb_, logBHull_ } from './log-bbs.js';
 
 
 const toDrawCheckboxStyles = { 
@@ -175,7 +175,7 @@ function Page(props: Props) {
 			return;
 		}
 		
-        let { state, transientState } = stateControl;
+        let { state } = stateControl;
         let { pageState } = state.appState;
 		let svg$ = ref.current;
 		if (!svg$) { return; }
@@ -232,8 +232,9 @@ function Page(props: Props) {
 	//	upd(pageState, { showDelay: value });
 	//}
 
-
-	function satScaleChanged(event: React.ChangeEvent<{}>, value: number | number[]) {
+	function satScaleChanged(
+			event: Event, value: number | number[], activeThumb: number) {
+				
 		let satScale = value as number;
 		let mats = transientState.mats;
 		if (!mats) { return; }
@@ -243,7 +244,7 @@ function Page(props: Props) {
 	}
 
 
-	function drawElements(toDraws: ToDraw) {
+	async function drawElements(toDraws: ToDraw) {
         if (typeof _debug_ === 'undefined') { return; }
 
 		let svg$ = ref.current;
@@ -252,6 +253,12 @@ function Page(props: Props) {
 		let elemss$: SVGElement[][][] = [];
         for (let elemType_ in toDraws) {
             let elemType = elemType_ as keyof IDebugElems;
+
+			//if (elemType === 'twoProng_regular') {
+			//	console.log('A', _debug_.generated.elems[elemType].length);
+			//	continue;
+			//}
+
             let toDraw = toDraws[elemType];
 
             let $elems = $svgs[elemType];
@@ -268,8 +275,101 @@ function Page(props: Props) {
 			
 			elemss$.push($elems);
 		}
+
+
+		/*
+		const { transientState } = stateControl;
+		// const { mats } = transientState;
+		let { pageState } = stateControl.state.appState;
+		let { vectorName } = pageState;
+		let { pathStr } = await loadPath(vectorName);
+
+		// The basic strategy to get all the maximal circles will be to go around
+		// the shape and look at each contact point in turn.
+		const bezierLoops = getPathsFromStr(pathStr);
+		const mats = findMats(bezierLoops);
+		let count = 0;  // Let's count the number of 2-prongs
+		// Since there are usually 2 (or more) 'contact points' per maximal 
+		// circle we will set up a hash in order to not count the maximal 
+		// circles twice.
+		const cpHash = new Set<CpNode>();
+		for (const mat of mats) {  // For each MAT generated by the shape
+			// Get all the contact points of the current MAT
+			const cpNodes = mat.cpNode.getAllOnLoop();  
+			for (const cpNode of cpNodes) {
+				if (cpNode.getRealProngCount() !== 2) {
+					continue;  // It must be specifically a 2-prong
+				}
+
+				// Get all contact points of the maximal circle belonging to the
+				// current contact point (including the current contact point 
+				// itself)
+				const cpNodesOnCircle = cpNode.getCpNodesOnCircle();
+				let circleAlreadySeen = false;
+				for (let cpNodeOnCircle of cpNodesOnCircle) {
+					if (cpHash.has(cpNodeOnCircle)) { 
+						circleAlreadySeen = true;
+					} else {
+						cpHash.add(cpNodeOnCircle);
+					}
+				}
+
+				if (circleAlreadySeen) { 
+					continue;  // don't count the circle twice if already seen
+				}
+
+				// Some info about the 2-prong that may be of interest:
+				cpNode.cp.circle.center           // medial axis circle center
+				cpNode.cp.circle.radius           // medial axis circle radius
+				cpNode.cp.pointOnShape.curve.ps;  // bezier curve control points
+				cpNode.cp.pointOnShape.t;         // `t` parameter value where the contact point occurs
+				cpNode.cp.pointOnShape.p;         // contact point coordinates
+				cpNode.isHoleClosing              // is it hole-closing?
+				cpNode.isSharp()                  // is it a sharp corner
+				// etc, etc.
+
+				// drawCpNode(g, cpNode);  // draw the contact point
+
+				count++;
+			}
+		}
+		console.log(`Number of 2-prongs: ${count}`);
+		*/
 		
 		return elemss$;
+	}
+
+
+	function drawCpNode(g: SVGGElement, cpNode: CpNode) {
+		let scaleFactor = 0.3;
+	
+		let $failedDot : SVGElement[] = [];
+		let $center    : SVGElement[] = [];
+		let $circle    : SVGElement[] = [];
+		let $cp1       : SVGElement[] = [];
+		let $cp2       : SVGElement[] = [];
+		
+		let color;
+		let thin;
+	
+		cpNode.cp.pointOnShape.curve.ps;
+		cpNode.cp.pointOnShape.t;
+		cpNode.cp.pointOnShape.p;
+		cpNode.cp.circle.center
+		cpNode.cp.circle.radius
+		
+		color = 'red ';
+		thin = '2';
+			
+		const pos = cpNode.cp.pointOnShape;
+		const circle = cpNode.cp.circle;
+
+		$center = drawFs.dot   (g, circle.center, 1*scaleFactor, 'yellow');
+		$circle = drawFs.circle(g, circle, color + 'thin' + thin + ' nofill'); 
+		$cp1    = drawFs.dot   (g, pos.p, 0.035*scaleFactor, color);
+		// $cp2    = drawFs.dot   (g, twoProng.z, 0.07*scaleFactor, color);	
+		
+		return [...$failedDot, ...$center, ...$circle, ...$cp1, ...$cp2];	
 	}
 
 
@@ -306,14 +406,15 @@ function Page(props: Props) {
 
 
 	//function vectorChanged(vectorName: string) {
-	function vectorChanged(event: React.ChangeEvent<{name?: string; value: string;}>, child: React.ReactNode) {
+	// function vectorChanged(event: SelectChangeEvent<{name?: string; value: string;}>, child: React.ReactNode) {
+	function vectorChanged(event: SelectChangeEvent<string>, child: React.ReactNode) {
 		let vectorName = event.target.value;
 		upd(pageState, { vectorName });
 		lazyLoadDeduced();
 	}
 
 
-	return (<>
+	return <>
         <Container maxWidth="md" className={classes.container}>
 			{Object
 			.keys(toDraw)
@@ -369,7 +470,7 @@ function Page(props: Props) {
 				options={vectors.map(obj => ({ key: obj.name, text: obj.name }))}
 			/>
 			*/}
-			<Grid container justify="flex-start" spacing={5}>
+			<Grid container justifyContent="flex-start" spacing={5}>
 				<Grid item>
 					<FormControl variant="outlined" style={{ minWidth: '200px' }}>
 					<InputLabel id="select-outlined-label">Shape</InputLabel>
@@ -460,7 +561,7 @@ function Page(props: Props) {
 				<g />
 			</svg>
         </Container>
-    </>);
+    </>;
 }
 
 
@@ -579,3 +680,38 @@ function gotoPrevViewbox(stateControl: StateControl) {
 
 
 export { Page }
+
+
+/*
+const mats = findMats(bezierLoops);
+const cpHash = new Set<CpNode>();
+		for (const mat of mats) {
+			const cpNodes = mat.cpNode.getAllOnLoop();
+			for (const cpNode of cpNodes) {
+				const cpNodesOnCircle = cpNode.getCpNodesOnCircle();
+				let circleAlreadySeen = false;
+				for (let cpNodeOnCircle of cpNodesOnCircle) {
+					if (cpHash.has(cpNodeOnCircle)) { 
+						circleAlreadySeen = true;  
+					} else {
+						cpHash.add(cpNodeOnCircle);
+					}
+				}
+				if (circleAlreadySeen) { continue; }
+
+				if (drawCpNode(g, cpNode)) {
+					count++;
+				};
+			}
+		}
+
+
+		
+		cpNode.cp.pointOnShape.curve.ps;
+		cpNode.cp.pointOnShape.t;
+		cpNode.cp.pointOnShape.p;
+		cpNode.cp.circle.center
+		cpNode.cp.circle.radius
+	}
+}
+*/

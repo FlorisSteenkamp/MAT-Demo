@@ -1,6 +1,4 @@
-
-import { PageState } from "./page-state";
-import { TransientState } from "./transient-state";
+import { PageState } from "./page-state.js";
 
 
 /**

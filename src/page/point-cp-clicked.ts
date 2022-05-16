@@ -1,11 +1,10 @@
-
 declare var _debug_: Debug; 
 
 import { Debug } from 'flo-mat';
 import { squaredDistanceBetween } from 'flo-vector2d';
 import { CpNode } from 'flo-mat';
-import { showAndLogCp } from './show-and-log-cp';
-import { StateControl } from '../state-control/state-control';
+import { showAndLogCp } from './show-and-log-cp.js';
+import { StateControl } from '../state-control/state-control.js';
 
 
 function pointCpClicked(stateControl: StateControl) {
