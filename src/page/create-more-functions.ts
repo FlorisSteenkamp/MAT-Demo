@@ -73,7 +73,7 @@ function showLoop(g: SVGGElement, bps: BezierPiece[], showDelay = 5000) {
 
 function createCpNextOnCircle(stateControl: StateControl) {
     return function() {
-        let { transientState } =  stateControl;
+        let { transientState } = stateControl;
         let { current } = transientState;
         let pageState = stateControl.state.appState.pageState;
 
@@ -89,7 +89,7 @@ function createCpNextOnCircle(stateControl: StateControl) {
 
 function createCpPrevOnCircle(stateControl: StateControl) {
     return function() {
-        let { transientState } =  stateControl;
+        let { transientState } = stateControl;
         let { current } = transientState;
         let pageState = stateControl.state.appState.pageState;
 
@@ -105,7 +105,7 @@ function createCpPrevOnCircle(stateControl: StateControl) {
 
 function createCpNext(stateControl: StateControl) {
     return function() {
-        let { transientState } =  stateControl;
+        let { transientState } = stateControl;
         let { current } = transientState;
         let pageState = stateControl.state.appState.pageState;
 
@@ -121,7 +121,7 @@ function createCpNext(stateControl: StateControl) {
 
 function createCpPrev(stateControl: StateControl) {
     return function() {
-        let { transientState } =  stateControl;
+        let { transientState } = stateControl;
         let { current } = transientState;
         let pageState = stateControl.state.appState.pageState;
 

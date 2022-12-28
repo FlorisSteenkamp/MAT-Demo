@@ -8,11 +8,6 @@ import { StateControl } from './state-control/state-control.js';
 import { getInitialState } from './state/get-initial-state.js';
 import { defaultTransientState } from './state/default-state.js';
 import { Page } from './page/page.js';
-import { ThemeProvider } from '@mui/styles';
-import { createTheme } from '@mui/material/styles';
-
-
-const theme = createTheme();
 
 
 function App() {
@@ -27,13 +22,11 @@ function App() {
 
     return (
         <Router>
-        <ThemeProvider theme={theme}>
         <main>
             <Routes>
                 <Route path="/" element={<Page stateControl={stateControl} pageState={pageState} />} />
             </Routes>
         </main>
-        </ThemeProvider>
         </Router>
     );
 }

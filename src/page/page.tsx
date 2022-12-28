@@ -6,7 +6,7 @@ import { memo, useRef, useEffect } from 'react';
 import { CpNode, findMats, IDebugElems, getPathsFromStr } from 'flo-mat';
 import { Container, Slider, Typography, FormControl, InputLabel, MenuItem, Select, Grid, SelectChangeEvent } from '@mui/material';
 import { StateControl } from '../state-control/state-control.js';
-import { useStyles } from './styles.js';
+// import { useStyles } from './styles.js';
 import { Debug } from '../debug.js';
 import { ToDraw } from '../state/to-draw.js';
 import { deleteSvgs } from './delete-svgs.js';
@@ -96,7 +96,7 @@ function Page(props: Props) {
 	const { toDraw } = pageState;
 
 	// Hooks
-	const classes = useStyles();
+	// const classes = useStyles();
 	const ref = useRef<SVGSVGElement>(null);
 	const refX = useRef<HTMLSpanElement>(null);
 	const refY = useRef<HTMLSpanElement>(null);
@@ -415,7 +415,8 @@ function Page(props: Props) {
 
 
 	return <>
-        <Container maxWidth="md" className={classes.container}>
+        {/* <Container maxWidth="md" className={classes.container}> */}
+		<Container maxWidth="md" style={{ height: 'calc(100%)', padding: '10px' }}>
 			{Object
 			.keys(toDraw)
 			.filter(key => !!toDrawKeyToText[key as keyof ToDraw])

@@ -1,5 +1,6 @@
 const path = require('path');
 // const CircularDependencyPlugin = require('circular-dependency-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ResolveTypeScriptPlugin = require("resolve-typescript-plugin");
 
 const projectRoot = 'c:/projects/';
@@ -12,17 +13,22 @@ const extensions = [
 
 module.exports = {
     entry: './src/app.tsx',
-    // Remove below line in production
     mode: 'development',
-    // devtool: false,
-    devtool: 'eval-source-map',
     //mode: 'production',
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
+            },
+            {
+                // see https://github.com/webpack/webpack/issues/11467
+                test: /\.m?js/,
+                resolve: {
+                    fullySpecified: false
+                }
             }
         ]
     },
