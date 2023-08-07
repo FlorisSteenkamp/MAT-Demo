@@ -21,14 +21,17 @@ function App() {
     const { pageState } = appState;
 
     return (
-        <Router>
         <main>
-            <Routes>
-                <Route path="/" element={<Page stateControl={stateControl} pageState={pageState} />} />
-                <Route path="/index.html" element={<Page stateControl={stateControl} pageState={pageState} />} />
-            </Routes>
+            <Page stateControl={stateControl} pageState={pageState} />
         </main>
-        </Router>
+        // <Router>
+        // <main>
+        //     <Routes>
+        //         <Route path="/" element={<Page stateControl={stateControl} pageState={pageState} />} />
+        //         <Route path="/index.html" element={<Page stateControl={stateControl} pageState={pageState} />} />
+        //     </Routes>
+        // </main>
+        // </Router>
     );
 }
 
