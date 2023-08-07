@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { _upd } from './state-control/upd.js';
 import { State } from './state/state.js';
@@ -19,8 +18,6 @@ function App() {
         state, upd, upd$, transientState: defaultTransientState,
     }));
 
-    // console.log(defaultTransientState);
-
     const { pageState } = appState;
 
     return (
@@ -28,6 +25,7 @@ function App() {
         <main>
             <Routes>
                 <Route path="/" element={<Page stateControl={stateControl} pageState={pageState} />} />
+                <Route path="/index.html" element={<Page stateControl={stateControl} pageState={pageState} />} />
             </Routes>
         </main>
         </Router>
