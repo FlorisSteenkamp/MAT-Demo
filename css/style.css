@@ -107,7 +107,7 @@ h1 > a:hover {
 .dot { stroke-width: 0.0; }
 
 .shape { 
-	fill:#ddd;stroke-width:0.02%;stroke:#777
+	fill:#ddd;stroke-width:0.01%;stroke:#777
 }
 
 .play-shape { 
@@ -145,18 +145,19 @@ h1 > a:hover {
 .kappa { fill: #000; stroke: #000; }
 .invisible { opacity: 0; }
 
-.purple  { stroke: purple;  fill: purple;  }
-.gray    { stroke: #888;  fill: #888;  }
-.red     { stroke: #F00;  fill: #F00;  }
-.reddish { stroke: #F11;  fill: #F11;  }
-.green   { stroke: #0F0;  fill: #0F0;  }
-.blue    { stroke: #00F;  fill: #00F;  }
-.blueish { stroke: #11F;  fill: #11F;  }
-.cyan    { stroke: #0AA;  fill: #0AA;  }
-.pink    { stroke: pink;  fill: pink;  }
-.pinker  { stroke: #F0F;  fill: #F0F;  }
-.brown   { stroke: brown; fill: brown; }
-.black   { stroke: #000; }
+.purple   { stroke: purple;  fill: purple;  }
+.gray     { stroke: #888;  fill: #888;  }
+.red      { stroke: #F00;  fill: #F00;  }
+.reddish  { stroke: #F11;  fill: #F11;  }
+.green    { stroke: #0F0;  fill: #0F0;  }
+.blue     { stroke: #00F;  fill: #00F;  }
+.blueish  { stroke: #11F;  fill: #11F;  }
+.cyan     { stroke: #0AA;  fill: #0AA;  }
+.pink     { stroke: pink;  fill: pink;  }
+.pinker   { stroke: #F0F;  fill: #F0F;  }
+.deeppink { stroke: deeppink;  fill: deeppink;  }
+.brown    { stroke: brown; fill: brown; }
+.black    { stroke: #000; }
 .darkgreen { stroke: #080; }
 
 .thin1  { stroke-width: 0.01%; }

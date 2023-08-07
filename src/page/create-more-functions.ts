@@ -1,7 +1,7 @@
 declare var _debug_: Debug; 
 
 import { drawFs } from 'flo-draw';
-import { getBoundaryPieceBeziers, Debug, BezierPiece } from 'flo-mat';
+import { getBoundaryPieceBeziers, Debug, BezierPiece, CpNode } from 'flo-mat';
 import { showAndLogCp } from './show-and-log-cp.js';
 import { StateControl } from '../state-control/state-control.js';
 
@@ -14,8 +14,21 @@ function createMoreFunctions(stateControl: StateControl) {
             nextAndAround: createNextAndAround(stateControl),
             nextOnCircle: createCpNextOnCircle(stateControl),
             prevOnCircle: createCpPrevOnCircle(stateControl),
-            loop: createLoop(stateControl)
+            loop: createLoop(stateControl),
+            use: use(stateControl)
         }
+    }
+}
+
+
+function use(stateControl: StateControl) {
+    return function(cpNode: CpNode) {
+        let { transientState } = stateControl;
+        let { current } = transientState;
+        let pageState = stateControl.state.appState.pageState;
+
+        current.cpNode = cpNode;
+        showAndLogCp(current.g, cpNode, pageState.showDelay);
     }
 }
 

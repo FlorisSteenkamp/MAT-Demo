@@ -33,7 +33,7 @@ function pointCpClicked(stateControl: StateControl) {
         
         current.cpNode = bestCpNode;
 
-        showAndLogCp(g, bestCpNode, showDelay);
+        showAndLogCp(g, bestCpNode, showDelay, );
     }
 }
 

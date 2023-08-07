@@ -5,7 +5,7 @@ import { closestPointOnBezier } from 'flo-bezier3';
 import { getLoopArea } from 'flo-boolean';
 import { beziersToSvgPathStr, Loop } from 'flo-mat';
 import { drawFs } from 'flo-draw';
-import { Debug } from '../debug.js';
+import { Debug } from '../../debug.js';
 import { getLoopCentroid } from './get-loop-centroid.js';
 
 

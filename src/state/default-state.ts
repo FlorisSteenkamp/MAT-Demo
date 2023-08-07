@@ -12,7 +12,7 @@ const defaultTransientState: TransientState = {
         nextElseAround: false,
         g: undefined,
     },
-    viewboxStack: [],
+    // viewboxStack: [],
     zoomState: {},
     $svgs: createEmptyGeneratedSvgs(),
     mats: undefined
@@ -71,6 +71,7 @@ const defaultPageState: PageState = {
     toDraw: defaultToDraw,
     viewbox: [[0,0],[100.100]],
     vectorName : 'holy poly',
+    viewboxStack: []
 }
 
 

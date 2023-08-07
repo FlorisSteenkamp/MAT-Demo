@@ -30,8 +30,9 @@ interface PageState {
         boundary : boolean;
     };
     vectorName: string;
+    viewboxStack: number[][][];
 }
 
 
 
-export { PageState }
+export { PageState, ClickFor }

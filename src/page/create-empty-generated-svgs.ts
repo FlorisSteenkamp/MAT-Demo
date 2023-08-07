@@ -4,12 +4,12 @@ import { DebugElems } from "../debug.js";
 function createEmptyGeneratedSvgs(): { [T in keyof DebugElems]: SVGElement[][] }  {
     return {
         oneProng             : [],
+        oneProngAtDullCorner : [],
         sharpCorner          : [],
         twoProng_regular     : [],
         twoProng_holeClosing : [],
         threeProng           : [],
         dullCorner           : [],
-        oneProngAtDullCorner : [],
         bezier_              : [],
         looseBoundingBox_    : [],
         tightBoundingBox_    : [],

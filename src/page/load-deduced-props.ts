@@ -45,14 +45,9 @@ async function loadDeducedProps(
     try {
         // Resets _debug_
         updDebugGlobal(stateControl, IS_DEBUG_ON);
-        //let mats = findMats(bezierLoops, 1.0001, 1);
-        // let mats = findMats(bezierLoops, 1.001, 2);
-        // let mats = findMats(bezierLoops,0.4,100);
-        // let mats = findMats(bezierLoops,0.4,4);
-        let mats = findMats(bezierLoops);
+        // let mats = findMats(bezierLoops, 0.4, 4);
+        let mats = findMats(bezierLoops, 1, 5);
         stateControl.transientState.mats = mats;
-        // Basically just populates _debug_.generated
-        //getSatsFromGeneratedMats(stateControl, mats);
         let satScale = stateControl.state.appState.pageState.satScale;
         getSatsFromGeneratedMats(mats, satScale);
     } catch (e) {

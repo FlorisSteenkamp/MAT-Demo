@@ -7,6 +7,8 @@ function getSatsFromGeneratedMats(
         mats: Mat[],
         scale: number): void {
 
+    return undefined;
+    
     if (_debug_ === undefined) { return; }
     
     if (scale < 1) { return; }

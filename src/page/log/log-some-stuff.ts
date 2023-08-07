@@ -1,6 +1,7 @@
 declare var _debug_: Debug;
 
-import { Debug } from '../debug.js';
+import { Debug } from '../../debug.js';
+import { getProngCount } from 'flo-mat';
 
 
 function logSomeStuff(timingAll: number) {
@@ -20,17 +21,15 @@ function logSomeStuff(timingAll: number) {
 
     let elems = generated.elems;
 
-    addToVertexCount(vertexCount, 1, generated.elems.oneProng.length);
-
     for (let i=0; i<elems.twoProng_regular.length; i++) {
         let nProng = elems.twoProng_regular[i];
-        let n = nProng.cpNode.getProngCount();
+        let n = getProngCount(nProng.cpNode);
         addToVertexCount(vertexCount, n, 1);
     }
 
     for (let i=0; i<elems.twoProng_holeClosing.length; i++) {
         let nProng = elems.twoProng_holeClosing[i];
-        let n = nProng.cpNode.getProngCount();
+        let n = getProngCount(nProng.cpNode);
         addToVertexCount(vertexCount, n, 1);
     }
 

@@ -13,9 +13,9 @@ const extensions = [
 
 module.exports = {
     entry: './src/app.tsx',
-    mode: 'development',
-    //mode: 'production',
-    devtool: 'eval-source-map',
+    // mode: 'development',
+    mode: 'production',
+    // devtool: 'eval-source-map',
     module: {
         rules: [
             {
@@ -34,13 +34,11 @@ module.exports = {
     },
     resolve: {
         extensions,
-        //alias: {
-        //    // TODO - remove for production
-        //    'flo-boolean$':             path.resolve(__dirname, projectRoot, 'boolean/src/index.ts'),
-        //    'flo-mat$':                 path.resolve(__dirname, projectRoot, 'mat/src/index.ts'),
-        //    'flo-bezier3$':             path.resolve(__dirname, projectRoot, 'bezier/src/index.ts'),
-        //    'flo-ll-rb-tree$':          path.resolve(__dirname, projectRoot, '../projects-stable', 'll-rb-tree/src/index.ts')
-        //},
+        alias: {
+           // 'flo-boolean$':             path.resolve(__dirname, projectRoot, 'boolean/src/index.ts'),
+           // 'flo-mat$':                 path.resolve(__dirname, projectRoot, 'mat/src/index.ts'),
+           // 'flo-bezier3$':             path.resolve(__dirname, projectRoot, 'bezier/src/index.ts'),
+        },
         plugins: [
             new ResolveTypeScriptPlugin({includeNodeModules: false})
         ]

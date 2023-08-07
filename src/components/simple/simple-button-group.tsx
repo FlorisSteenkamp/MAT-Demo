@@ -9,7 +9,7 @@ interface Props<T extends string> {
 
 
 function ButtonGroup<T extends string>(props: Props<T>) {
-    const { options, onChanged } = props;
+    const { options, onChanged, value: selectedValue } = props;
     const idStr = Math.random().toString();
 
     function onClick(key: T) {
@@ -22,9 +22,18 @@ function ButtonGroup<T extends string>(props: Props<T>) {
     return (
         <div className='btn-group'>
             {Object.entries(options).map(option => {
-                let key = option[0] as T;
-                let value = option[1] as { text: string };
-                return <button key={key} onClick={onClick(key)}>{value.text}</button>
+                const key = option[0] as T;
+                const value = option[1] as { text: string };
+                // return <button key={key} onClick={onClick(key)}>{value.text}</button>
+                return (
+                    <button 
+                        key={key} 
+                        onClick={onClick(key)}
+                        style={selectedValue === key ? { backgroundColor: '#3e8e41' } : {} }
+                    >
+                        {value.text}
+                    </button>
+                );
             })}
         </div>
     );

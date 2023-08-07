@@ -8,6 +8,7 @@ import { StateControl } from './state-control/state-control.js';
 import { getInitialState } from './state/get-initial-state.js';
 import { defaultTransientState } from './state/default-state.js';
 import { Page } from './page/page.js';
+import { createRoot } from 'react-dom/client';
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
     const [stateControl] = useState((): StateControl => ({ 
         state, upd, upd$, transientState: defaultTransientState,
     }));
+
+    // console.log(defaultTransientState);
 
     const { pageState } = appState;
 
@@ -32,4 +35,8 @@ function App() {
 }
 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const container = document.getElementById('app');
+const root = createRoot(container!);
+root.render(<App />);
+
+// ReactDOM.render(<App tab="home"/>, document.getElementById('app'));

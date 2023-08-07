@@ -7,7 +7,7 @@
         "noImplicitThis": true,
         "target": "es2020", // required for bigint
         "declaration": false,
-        "noEmitOnError": true,
+        "noEmitOnError": false,
         "allowJs": true,
         // "sourceMap": true,
         // "inlineSourceMap": false,

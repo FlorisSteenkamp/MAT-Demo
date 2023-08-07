@@ -2,7 +2,7 @@ declare var _debug_: Debug;
 
 import { squaredDistanceBetween, centroid } from 'flo-vector2d';
 import { closestPointOnBezier } from 'flo-bezier3';
-import { Debug } from '../debug.js';
+import { Debug } from '../../debug.js';
 
 
 function logBezier_(g: SVGGElement, p: number[], showDelay = 1000) {

@@ -20,8 +20,8 @@ function updDebugGlobal(
     let d = (window as any).d = (window as any)._debug_;
 
     //console.log(d)
-    //d.directives.stopAfterHoleClosers = true;
-    //d.directives.stopAfterTwoProngsNum = 13;
+    // d.directives.stopAfterHoleClosers = true;
+    //d.directives.stopAfterTwoProngsNum = 1;
     //d.directives.stopAfterTwoProngs = true;
     //d.directives.stopAfterThreeProngs = true;
     //d.directives.stopAfterThreeProngsNum = 1;  // not implemented
