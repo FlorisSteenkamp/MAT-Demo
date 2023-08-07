@@ -30,7 +30,7 @@ interface PageState {
         boundary : boolean;
     };
     vectorName: string;
-    viewboxStack: number[][][];
+    // viewboxStack: number[][][];
 }
 
 

@@ -8,7 +8,7 @@ interface TransientState {
         nextElseAround: boolean,
         g: SVGGElement,
     }
-    // viewboxStack: number[][][],
+    viewboxStack: number[][][],
     zoomState: Partial<{
             mouseIsDown: boolean;
             prevViewboxXY: number[];

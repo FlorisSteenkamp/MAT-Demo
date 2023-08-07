@@ -80,8 +80,8 @@ function onClick(
 function gotoPrevViewbox(stateControl: StateControl) {
     let { transientState, state, upd } = stateControl;
     let { pageState } = state.appState;
-    // let viewbox = transientState.viewboxStack.pop();
-    let viewbox = pageState.viewboxStack.pop();
+    let viewbox = transientState.viewboxStack.pop();
+    // let viewbox = pageState.viewboxStack.pop();
     if (!viewbox) {
         let loops = _debug_.generated.elems.loop;
         let bezierLoops = loops.map(loop => loop.beziers);

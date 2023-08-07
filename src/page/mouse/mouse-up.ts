@@ -57,8 +57,8 @@ function clickedForNewViewboxSecond(
 
     if (relWidth < 0.01 || relHeight < 0.01) { return; }
 
-    // transientState.viewboxStack.push(viewbox);
-    pageState.viewboxStack.push(viewbox);
+    transientState.viewboxStack.push(viewbox);
+    // pageState.viewboxStack.push(viewbox);
     upd(pageState, { viewbox: newViewbox });
 }
 

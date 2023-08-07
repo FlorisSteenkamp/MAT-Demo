@@ -60,7 +60,7 @@ function Page(props: Props) {
 	const svgRef = useRef<SVGSVGElement>(null);
 	const refX = useRef<HTMLSpanElement>(null);
 	const refY = useRef<HTMLSpanElement>(null);
-	useEffect(function() { lazyLoadDeduced(false) }, []); // run only once
+	useEffect(function() { lazyLoadDeduced(true) }, []); // run only once
 	//const [{x,y}, setXY] = useState({x: 0, y: 0});
 	
 	

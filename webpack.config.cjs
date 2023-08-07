@@ -13,8 +13,8 @@ const extensions = [
 
 module.exports = {
     entry: './src/app.tsx',
-    // mode: 'development',
-    mode: 'production',
+    mode: 'development',
+    // mode: 'production',
     // devtool: 'eval-source-map',
     module: {
         rules: [
@@ -35,9 +35,9 @@ module.exports = {
     resolve: {
         extensions,
         alias: {
-           // 'flo-boolean$':             path.resolve(__dirname, projectRoot, 'boolean/src/index.ts'),
-           // 'flo-mat$':                 path.resolve(__dirname, projectRoot, 'mat/src/index.ts'),
-           // 'flo-bezier3$':             path.resolve(__dirname, projectRoot, 'bezier/src/index.ts'),
+           // 'flo-boolean$': path.resolve(__dirname, projectRoot, 'boolean/src/index.ts'),
+           // 'flo-mat$':     path.resolve(__dirname, projectRoot, 'mat/src/index.ts'),
+           // 'flo-bezier3$': path.resolve(__dirname, projectRoot, 'bezier/src/index.ts'),
         },
         plugins: [
             new ResolveTypeScriptPlugin({includeNodeModules: false})
