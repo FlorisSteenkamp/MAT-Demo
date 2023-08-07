@@ -20,7 +20,7 @@
         "flo-bezier3": "^5.0.0",
         "flo-boolean": "^2.1.8",
         "flo-draw": "^2.0.2",
-        "flo-mat": "^3.0.0",
+        "flo-mat": "^3.0.1",
         "flo-poly": "^6.0.8",
         "flo-vector2d": "^4.0.2",
         "ramda": "^0.29.0",

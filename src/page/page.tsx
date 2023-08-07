@@ -221,7 +221,7 @@ function Page(props: Props) {
 					<Slider
 						value={pageState.satScale}
 						aria-labelledby="slider"
-						min={1} max={5} step={0.1}
+						min={1} max={2} step={0.025}
 						marks
 						valueLabelDisplay="auto"
 						onChange={satScaleChanged}
