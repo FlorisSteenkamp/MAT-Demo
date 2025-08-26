@@ -4,9 +4,9 @@ import { getViewboxXY } from "../get-viewbox-xy.js";
 
 function mouseMove(
         stateControl: StateControl,
-        svgRef: React.MutableRefObject<SVGSVGElement>,
-        refX: React.MutableRefObject<HTMLSpanElement>,
-        refY: React.MutableRefObject<HTMLSpanElement>) {
+        svgRef: React.RefObject<SVGSVGElement | null>,
+        refX: React.RefObject<HTMLSpanElement | null >,
+        refY: React.RefObject<HTMLSpanElement | null >) {
 
     return (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
         let svg$ = svgRef.current;

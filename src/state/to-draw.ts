@@ -1,7 +1,7 @@
-import { DebugElems } from '../debug.js';
+import { DebugElems } from '../debug';
 
 
-type ToDraw = { [T in keyof DebugElems]: boolean }
+type ToDraw = { [T in keyof DebugElems]: boolean };
 
 
 export { ToDraw }

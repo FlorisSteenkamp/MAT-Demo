@@ -1,10 +1,10 @@
-import { IDebugElems as IDebugElemsMat } from 'flo-mat';
-import { IDebugElems as IDebugElemsBoolean } from 'flo-boolean';
+import { DebugElems as DebugElemsMat } from 'flo-mat';
+import { IDebugElems as DebugElemsBoolean } from 'flo-boolean';
 import { Debug as DebugMat } from 'flo-mat';
 import { Debug as DebugBooleanOp } from 'flo-boolean';
 
 
-type DebugElems = IDebugElemsMat & IDebugElemsBoolean;
+type DebugElems = DebugElemsMat & DebugElemsBoolean;
 type Debug = DebugMat & DebugBooleanOp;
 
 

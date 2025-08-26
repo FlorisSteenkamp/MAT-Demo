@@ -1,4 +1,4 @@
-import { AppState } from './app-state.js';
+import { AppState } from './app-state';
 
 
 interface State {

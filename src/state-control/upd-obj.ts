@@ -10,11 +10,11 @@ function _updObj(
         weakMap: WeakMap<any,string[]>) {
 
     return (v: any, newV: any) => {
-        let path = map.get(v);
+        let path = map.get(v)!;
         if (path === undefined) { // if the value has not been set before
-            path = weakMap.get(v);
+            path = weakMap.get(v)!;
             if (path === undefined) {
-                path = getObjPath(state,v);
+                path = getObjPath(state,v)!;
             }
         }
         

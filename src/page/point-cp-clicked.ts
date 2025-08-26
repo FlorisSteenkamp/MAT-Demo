@@ -3,8 +3,8 @@ declare var _debug_: Debug;
 import { Debug } from 'flo-mat';
 import { squaredDistanceBetween } from 'flo-vector2d';
 import { CpNode } from 'flo-mat';
-import { showAndLogCp } from './show-and-log-cp.js';
-import { StateControl } from '../state-control/state-control.js';
+import { showAndLogCp } from './show-and-log-cp';
+import { StateControl } from '../state-control/state-control';
 
 
 function pointCpClicked(stateControl: StateControl) {
@@ -13,7 +13,7 @@ function pointCpClicked(stateControl: StateControl) {
         let { transientState } = stateControl;
         let { current } = transientState;
         let bestD = Number.POSITIVE_INFINITY;
-        let bestCpNode: CpNode = undefined;
+        let bestCpNode: CpNode = undefined!;
 
         let generated = _debug_.generated;
 

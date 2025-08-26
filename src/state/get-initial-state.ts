@@ -1,5 +1,5 @@
-import { AppState } from './app-state.js';
-import { defaultAppState, defaultDeduced } from './default-state.js';
+import { AppState } from './app-state';
+import { defaultAppState, defaultDeduced } from './default-state';
 
 
 function getInitialState(): AppState {

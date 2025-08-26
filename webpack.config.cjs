@@ -1,53 +1,52 @@
 const path = require('path');
 // const CircularDependencyPlugin = require('circular-dependency-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ResolveTypeScriptPlugin = require("resolve-typescript-plugin");
+
 
 const projectRoot = 'c:/projects/';
 
-const extensions = [
-    '.js', '.mjs', '.cjs', 
-    '.jsx', '.cjsx', '.mjsx'
-];
-
 
 module.exports = {
-    entry: './src/app.tsx',
-    mode: 'development',
     // mode: 'production',
-    // devtool: 'eval-source-map',
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            },
-            {
-                // see https://github.com/webpack/webpack/issues/11467
-                test: /\.m?js/,
-                resolve: {
-                    fullySpecified: false
-                }
-            }
-        ]
+    mode: 'development',
+    devtool: 'inline-source-map',
+    entry: './src/app.tsx',
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'index.js'
     },
     resolve: {
-        extensions,
+        extensions: [
+            '.js', '.mjs', '.cjs', 
+            '.jsx', '.cjsx', '.mjsx',
+            '.tsx', '.ts', '.d.ts'
+        ],
+        extensionAlias: {
+            ".js": [".js", ".ts"],
+            ".cjs": [".cjs", ".cts"],
+            ".mjs": [".mjs", ".mts"]
+        },
         alias: {
-           // 'flo-boolean$': path.resolve(__dirname, projectRoot, 'boolean/src/index.ts'),
-           // 'flo-mat$':     path.resolve(__dirname, projectRoot, 'mat/src/index.ts'),
-           // 'flo-bezier3$': path.resolve(__dirname, projectRoot, 'bezier/src/index.ts'),
+            // 'flo-boolean$': path.resolve(__dirname, projectRoot, 'boolean/src/index.ts'),
+            'flo-mat$':     path.resolve(__dirname, projectRoot, 'mat/src/index.ts'),
+            // 'flo-bezier3$': path.resolve(__dirname, projectRoot, 'bezier/src/index.ts'),
         },
-        plugins: [
-            new ResolveTypeScriptPlugin({includeNodeModules: false})
-        ]
     },
-    output: {
-        filename: 'index.js',
-        library: {
-            type: 'module'
-        },
+    module: {
+        // rules: [
+        //     {
+        //         test: /\.([cm]?ts|tsx)$/,
+        //         loader: "ts-loader",
+        //         exclude: /^(node_modules)$/
+        //     }
+        // ]
+        rules: [{
+            test: /\.tsx?$/,
+            loader: 'ts-loader',
+            options: { silent: true },
+            exclude: /node_modules/,
+            sideEffects: false
+        }]
     },
     stats: {
         // Don't display anything, then add back colors, ...

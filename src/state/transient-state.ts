@@ -1,5 +1,6 @@
 import { CpNode, Mat } from "flo-mat";
 import { DebugElems } from "../debug.js";
+import { ToDraw } from "./to-draw.js";
 
 
 interface TransientState {
@@ -9,13 +10,13 @@ interface TransientState {
         g: SVGGElement,
     }
     viewboxStack: number[][][],
-    zoomState: Partial<{
+    zoomState: {
             mouseIsDown: boolean;
             prevViewboxXY: number[];
             zoomRect: SVGRectElement;
-    }>,
-    $svgs: { [T in keyof DebugElems]: SVGElement[][] };
-    mats: Mat[];
+    },
+    $svgs: { [T in keyof ToDraw]: SVGElement[][] };
+    // mats: Mat[];
 }
 
 

@@ -4,7 +4,7 @@ import { getViewboxXY } from "../get-viewbox-xy.js";
 
 function mouseUp(
         stateControl: StateControl,
-        svgRef: React.MutableRefObject<SVGSVGElement>,
+        svgRef: React.RefObject<SVGSVGElement | null>,
         viewbox: number[][]) {
 
     return (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {

@@ -1,9 +1,9 @@
 declare var _debug_: Debug; 
 
 import { drawFs } from 'flo-draw';
-import { getBoundaryPieceBeziers, Debug, BezierPiece, CpNode } from 'flo-mat';
-import { showAndLogCp } from './show-and-log-cp.js';
-import { StateControl } from '../state-control/state-control.js';
+import { getBoundaryPieceBeziers, Debug, CurvePiece, CpNode, CpNodeFs } from 'flo-mat';
+import { showAndLogCp } from './show-and-log-cp';
+import { StateControl } from '../state-control/state-control';
 
 
 function createMoreFunctions(stateControl: StateControl) {
@@ -15,20 +15,34 @@ function createMoreFunctions(stateControl: StateControl) {
             nextOnCircle: createCpNextOnCircle(stateControl),
             prevOnCircle: createCpPrevOnCircle(stateControl),
             loop: createLoop(stateControl),
-            use: use(stateControl)
+            use: use(stateControl),
+            cur: cur(stateControl),
+            ...CpNodeFs
         }
+    }
+}
+
+
+function cur(stateControl: StateControl) {
+    return function() {
+        const { transientState } = stateControl;
+        const { current } = transientState;
+
+        return current.cpNode;
     }
 }
 
 
 function use(stateControl: StateControl) {
     return function(cpNode: CpNode) {
-        let { transientState } = stateControl;
-        let { current } = transientState;
-        let pageState = stateControl.state.appState.pageState;
+        const { transientState } = stateControl;
+        const { current } = transientState;
+        const pageState = stateControl.state.appState.pageState;
 
         current.cpNode = cpNode;
         showAndLogCp(current.g, cpNode, pageState.showDelay);
+
+        return cpNode;
     }
 }
 
@@ -74,11 +88,11 @@ function createLoop(stateControl: StateControl) {
 }
 
 
-function showLoop(g: SVGGElement, bps: BezierPiece[], showDelay = 5000) {
-    for (let i=0; i<bps.length; i++) {
-        let bp = bps[i];
+function showLoop(g: SVGGElement, cps: CurvePiece[], showDelay = 5000) {
+    for (let i=0; i<cps.length; i++) {
+        let cp = cps[i];
         drawFs.bezierPiece(
-            g, bp.curve.ps, bp.ts, 'blue thin20 nofill', showDelay
+            g, cp.curve.ps, cp.ts, 'blue thin20 nofill', showDelay
         );
     }
 }
@@ -128,6 +142,8 @@ function createCpNext(stateControl: StateControl) {
 
         current.cpNode = cpNode;
         showAndLogCp(current.g, cpNode, pageState.showDelay);
+
+        return cpNode;
     }
 }
 
@@ -144,6 +160,8 @@ function createCpPrev(stateControl: StateControl) {
         
         current.cpNode = cpNode;
         showAndLogCp(current.g, cpNode, pageState.showDelay);
+
+        return cpNode;
     }
 }
 

@@ -27,13 +27,16 @@ function getViewBoxForShape(bezierLoops: number[][][][]) {
         if (maxY > maxY_) { maxY_ = maxY }
     }
 
-    let width = maxX_-minX_;
-    let height = maxY_-minY_;
+    let width = maxX_ - minX_;
+    let height = maxY_ - minY_;
 
     // The margin around the shape
-    let c = Math.max(width, height) * 0.02;
+    let _cx = Math.max(width, height) * 0.5;
+    let cx_ = Math.max(width, height) * 0.5;
+    let _cy = Math.max(width, height) * 0.05;
+    let cy_ = Math.max(width, height) * 0.05;
 
-    return [[minX_-c, minY_-c], [maxX_+c, maxY_+c]];
+    return [[minX_-_cx, minY_-_cy], [maxX_+cx_, maxY_+cx_]];
 }
 
 

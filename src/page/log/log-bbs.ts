@@ -2,11 +2,13 @@ declare var _debug_: Debug;
 
 import { squaredDistanceBetween, centroid } from 'flo-vector2d';
 import { closestPointOnBezier } from 'flo-bezier3';
-import { Debug } from '../../debug.js';
+import { Debug } from '../../debug';
+import { drawElemFs } from 'flo-mat';
+import { drawFs } from 'flo-draw';
 
 
 function logBezier_(g: SVGGElement, p: number[], showDelay = 1000) {
-    let bestPs;
+    let bestPs: number[][] = undefined!;
     let bestDistance = Number.POSITIVE_INFINITY;
 
     for (let ps of _debug_.generated.elems.bezier_) {
@@ -14,35 +16,34 @@ function logBezier_(g: SVGGElement, p: number[], showDelay = 1000) {
         let d = squaredDistanceBetween(bezierPoint.p, p);
         
         if (d < bestDistance) {
-            //g = generated.g;
             bestPs = ps;
             bestDistance = d;
         }
     }
     
-    _debug_.fs.drawElem.bezier_(g, bestPs, undefined, showDelay);
+    drawFs.bezier(g, bestPs, undefined, showDelay);
     console.log(bestPs);
 } 
 
 
 function logLooseBb_(g: SVGGElement, p: number[], showDelay = 1000) {
-    let poly = getNearestPoly(p, _debug_.generated.elems.looseBoundingBox_);
+    let poly = getNearestPoly(p, _debug_.generated.elems.looseBoundingBox_)!;
 
-    _debug_.fs.drawElem.looseBoundingBox_(g, poly, undefined, showDelay);
+    drawElemFs.looseBoundingBox(g, poly, undefined, showDelay);
     console.log(poly);
 } 
 
 function logTightBb_(g: SVGGElement, p: number[], showDelay = 1000) {
-    let poly = getNearestPoly(p, _debug_.generated.elems.tightBoundingBox_);
+    let poly = getNearestPoly(p, _debug_.generated.elems.tightBoundingBox_)!;
 
-    _debug_.fs.drawElem.tightBoundingBox_(g, poly, undefined, showDelay);
+    drawElemFs.tightBoundingBox(g, poly, undefined, showDelay);
     console.log(poly);
 } 
 
 function logBHull_(g: SVGGElement, p: number[], showDelay = 1000) {
-    let poly = getNearestPoly(p, _debug_.generated.elems.boundingHull_);
+    let poly = getNearestPoly(p, _debug_.generated.elems.boundingHull_)!;
 
-    _debug_.fs.drawElem.boundingHull_(g, poly, undefined, showDelay);
+    drawElemFs.boundingHull(g, poly, undefined, showDelay);
     console.log(poly);
 }
 

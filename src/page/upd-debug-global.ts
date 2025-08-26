@@ -1,8 +1,8 @@
 import { enableDebugDrawFs } from 'flo-draw';
 import { enableDebugForMat } from "flo-mat";
 import { enableDebugForBooleanOp } from 'flo-boolean';
-import { createMoreFunctions } from './create-more-functions.js';
-import { StateControl } from '../state-control/state-control.js';
+import { createMoreFunctions } from './create-more-functions';
+import { StateControl } from '../state-control/state-control';
 
 
 /** 
@@ -22,9 +22,9 @@ function updDebugGlobal(
     //console.log(d)
     // d.directives.stopAfterHoleClosers = true;
     //d.directives.stopAfterTwoProngsNum = 1;
-    //d.directives.stopAfterTwoProngs = true;
-    //d.directives.stopAfterThreeProngs = true;
-    //d.directives.stopAfterThreeProngsNum = 1;  // not implemented
+    // d.directives.stopAfterTwoProngs = true;
+    // d.directives.stopAfterThreeProngs = true;
+    // d.directives.stopAfterThreeProngsNum = 1;  // not implemented
 
     if (debugOn) { (window as any).d.m = createMoreFunctions(stateControl); }
 }

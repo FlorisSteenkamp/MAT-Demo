@@ -1,5 +1,5 @@
-import { ToDraw } from './to-draw.js';
-import { DeducedState } from './deduced-state.js';
+import { ToDraw } from './to-draw';
+import { DeducedState } from './deduced-state';
 
 
 type ClickFor = 
@@ -14,6 +14,12 @@ type ClickFor =
     | 'loopSimplified'
     | 'loopset'
     | 'cp'
+    | 'curvature'
+    | 'branch'
+    | 'curve'
+    | 'matCurve'
+    | 'salience'
+    // | 'speed'
 
 
 interface PageState {
@@ -24,13 +30,9 @@ interface PageState {
     viewbox    : number[][];
     satScale   : number;
     toDraw     : ToDraw;
-    threeProng: {
-        spokes   : boolean;
-        trace    : boolean;
-        boundary : boolean;
-    };
-    vectorName: string;
-    // viewboxStack: number[][][];
+    glyphName: string;
+    viewMat: boolean;
+    simplify: boolean;
 }
 
 

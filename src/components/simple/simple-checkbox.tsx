@@ -15,12 +15,14 @@ const Checkbox = memo(function SimpleCheckbox(props: Props) {
     const idStr = Math.random().toString();
 
     function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-        onChanged(event.target.checked);
+        if (onChanged !== undefined) {
+            onChanged(event.target.checked);
+        }
     }
 
     return (
         //<div style={styles?.div}>
-        <div style={styles ? styles.div : null}>
+        <div style={styles ? styles.div : undefined}>
             <input type="checkbox" id={idStr} onChange={onChange} checked={checked} />
             <label htmlFor={idStr}>{text}</label>
         </div>

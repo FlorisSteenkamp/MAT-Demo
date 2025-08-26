@@ -1,6 +1,9 @@
+import { Mat } from "flo-mat";
+
 
 interface DeducedState {
-    path: string;
+    pathStr: string;
+    mats: Mat[];
 }
 
 

@@ -4,7 +4,7 @@ import { getViewboxXY } from "../get-viewbox-xy.js";
 
 function mouseDown(
         stateControl: StateControl,
-        svgRef: React.MutableRefObject<SVGSVGElement>,
+        svgRef: React.RefObject<SVGSVGElement | null>,
         viewbox: number[][]) {
 
     return (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
@@ -35,7 +35,7 @@ function clickedForNewViewboxFirst(
     transientState.zoomState = { 
         mouseIsDown: true,
         prevViewboxXY: viewboxXY,
-        zoomRect: undefined
+        zoomRect: undefined!
     };
 }
 

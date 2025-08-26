@@ -1,12 +1,10 @@
-declare var _debug_: Debug; 
-
-import { Debug } from 'flo-mat';
-import { CpNode,
-    getCpNodesOnCircle,
-    enhanceCpNode,
-    traverseCp
-} from 'flo-mat';
+import { CpNode, CpNodeFs } from 'flo-mat';
 import { drawFs } from 'flo-draw';
+import { getInitialDegAngleBetweenMatCurves } from '../../../mat/src/cp-node/fs/get-angle-between-mat-curves';
+import { getNonTerminatingOnCircle } from '../../../mat/src/cp-node/fs/get-non-terminating-on-circle';
+
+
+const { enhanceCpNode, getRealProngCount, getProngCount, isTerminating } = CpNodeFs;
 
 
 function showAndLogCp(
@@ -17,17 +15,29 @@ function showAndLogCp(
 
     let cp = cpNode.cp;
     let pos = cp.pointOnShape;
-    drawFs.crossHair(g, pos.p, 'nofill thin5 red', scale*0.0002, showDelay);
+    // drawFs.crossHair(g, pos.p, 'nofill thin5 red', scale*0.5, showDelay);
+    drawFs.crossHair(g, cp.circle.center, 'nofill thin5 red', scale*0.5, showDelay);
     drawFs.line(g, [pos.p, cp.circle.center], 'nofill thin20 red', showDelay);
     drawFs.circle(g, cp.circle, 'nofill thin5 blue', showDelay)
     
     // Log
-    const prongCount = getCpNodesOnCircle(cpNode).length;
-    const enhancedCpNode = enhanceCpNode(cpNode);
-    console.log(enhancedCpNode);
-    console.log(enhancedCpNode.ordering);
-    // console.log(prongCount, cp.pointOnShape.t, cp.order, cp.order2, cpNode.isHoleClosing);
-    console.log(traverseCp(cpNode).map(enhanceCpNode));
+    const prongCount = getProngCount(cpNode);
+    const realProngCount = getRealProngCount(cpNode);
+    // console.log(prongCount,realProngCount)
+    // if (getRealProngCount(cpNode) === 2) {
+    //     const [cpNode1,cpNode2] = getNonTerminatingOnCircle(cpNode);
+    //     const angle = getInitialDegAngleBetweenMatCurves(cpNode1,cpNode2);
+    //     console.log(angle);
+    // }
+
+    // const enhancedCpNode = enhanceCpNode(cpNode);
+
+    // console.log(enhancedCpNode);
+    // console.log(enhancedCpNode.ordering);
+    console.log(isTerminating(cpNode));
+    // console.log(traverseCp(cpNode).map(enhanceCpNode));
+    // console.log('salience: ' + CpNodeFs.getSalience(cpNode));
+    // console.log('p: ' + pos.p);
 }
 
 

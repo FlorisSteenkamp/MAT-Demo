@@ -1,5 +1,5 @@
 
-function getObjPath(o: { [key:string]: any }, v: any): string[] {
+function getObjPath(o: { [key:string]: any }, v: any): string[] | undefined {
     for (let k in o) {
         if (o[k] === v) {
             return [k];

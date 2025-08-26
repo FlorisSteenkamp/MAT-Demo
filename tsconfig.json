@@ -1,20 +1,22 @@
 {
     "compilerOptions": {
-        "alwaysStrict": true,
-        "module": "commonjs",
+        "strict": true,
+        "module": "ESNext",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "target": "es2020", // required for bigint
+        "target": "ESNext",
         "declaration": false,
-        "noEmitOnError": false,
-        "allowJs": true,
-        // "sourceMap": true,
-        // "inlineSourceMap": false,
-        "jsx": "react"
+        "noEmitOnError": true,
+        "sourceMap": true,
+        "jsx": "react",
+        "outDir": "./dist",
+        "paths": {
+            "flo-mat": ["c:/projects/mat/src/index.ts"]
+        },
     },
     "include": [
-        "src/**/*"
+        "./src/app.tsx"
     ],
     "exclude": [
         "node_modules"

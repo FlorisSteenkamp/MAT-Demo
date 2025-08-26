@@ -1,21 +1,26 @@
 declare var _debug_: Debug;
 
-import { Debug } from '../../debug.js';
-import { logNearestBezier } from '../log/log-nearest-bezier.js';
-import { getViewBoxForShape, toViewBoxStr } from '../viewbox.js';
-import { pointCpClicked } from '../point-cp-clicked.js';
-import { logNearestLoopSet } from '../log/log-nearest-loop-set.js';
-import { logNearestLoopSimplified } from '../log/log-nearest-loop-simplified.js';
-import { logNearestContainer } from '../log/log-nearest-container.js';
-import { logBezier_, logLooseBb_, logTightBb_, logBHull_ } from '../log/log-bbs.js';
-import { getViewboxXY } from '../get-viewbox-xy.js';
-import { StateControl } from '../../state-control/state-control.js';
+import { Debug } from '../../debug';
+import { logNearestBezier } from '../log/log-nearest-bezier';
+import { getViewBoxForShape } from '../viewbox';
+import { logCpNode } from '../log/log-cp-node';
+import { logNearestLoopSet } from '../log/log-nearest-loop-set';
+import { logNearestLoopSimplified } from '../log/log-nearest-loop-simplified';
+import { logNearestContainer } from '../log/log-nearest-container';
+import { logBranch } from '../log/log-branch.js';
+import { getViewboxXY } from '../get-viewbox-xy';
+import { StateControl } from '../../state-control/state-control';
+import { logK } from '../log/log-k.js';
+import { logCurve } from '../log/log-curve.js';
+import { logThreeProng } from '../log/log-three-prong.js';
+import { logTwoProng } from '../log/log-two-prong.js';
+import { logMatCurve } from '../log/log-mat-curve.js';
+import { logSalience } from '../log/log-salience';
 
 
 function onClick(
         stateControl: StateControl,
-        svgRef: React.MutableRefObject<SVGSVGElement>,
-        viewbox: number[][]) {
+        svgRef: React.RefObject<SVGSVGElement | null>) {
 
     return (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
         if (event.shiftKey) { 
@@ -23,68 +28,56 @@ function onClick(
             return;
         }
 
+        const { state } = stateControl;
+        const { pageState } = state.appState;
+        const { viewbox, deduced } = pageState;
+        const { mats } = deduced;
+
         // Pixel coordinates
-        let pixelsX = event.nativeEvent.offsetX;
-        let pixelsY = event.nativeEvent.offsetY;
+        const pixelsX = event.nativeEvent.offsetX;
+        const pixelsY = event.nativeEvent.offsetY;
         
-        let [viewboxX,viewboxY] = 
+        const [viewboxX,viewboxY] = 
             getViewboxXY(svgRef.current!, viewbox, pixelsX, pixelsY);
         
-        let { state } = stateControl;
-        let { pageState } = state.appState;
-        let svg$ = svgRef.current;
+        const svg$ = svgRef.current;
         if (!svg$) { return; }
-        let g = svg$.getElementsByTagName('g')[0];
+        const g = svg$.getElementsByTagName('g')[0];
 
-        // Pixel coordinates
-        let ox = event.nativeEvent.offsetX;
-        let oy = event.nativeEvent.offsetY;
-
-        // SVG actual coordinates
-        let viewboxXY = getViewboxXY(svg$, pageState.viewbox, ox, oy);
-
-        const { spokes, trace, boundary } = pageState.threeProng;
-        let logNearestThreeProng = _debug_.fs.threeProng.logNearest(
-            spokes, trace, boundary
-        );
-
-        const vbWidth = (viewbox[1][0] - viewbox[0][0]);
-        const scale = vbWidth/10;
-        const logNearestTwoProng = (g: SVGGElement, p: number[], showDelay?: number) => {
-            _debug_.fs.twoProng.logNearest(spokes, trace, boundary)(
-                g,p,showDelay,scale
-            )
-        }
-
-        let fs: { [key: string]: (g: SVGElement, p: number[], delay: number) => void } = {
-            bezier_           : logBezier_,
-            looseBoundingBox_ : logLooseBb_,
-            tightBoundingBox_ : logTightBb_,
-            boundingHull_     : logBHull_,
-            twoProng          : logNearestTwoProng,
-            // twoProng       : _debug_.fs.twoProng.logNearest,
-            threeProng        : logNearestThreeProng,
-            bezier            : logNearestBezier,
-            loopSimplified    : logNearestLoopSimplified,
-            loopset           : logNearestLoopSet,
-            cp                : pointCpClicked(stateControl),
+        const fs: { [key: string]: (g: SVGGElement, p: number[], delay: number) => void } = {
+            // looseBoundingBox_ : logLooseBb_,
+            // tightBoundingBox_ : logTightBb_,
+            // boundingHull_     : logBHull_,
+            twoProng          : logTwoProng(mats),
+            threeProng        : logThreeProng(mats),
+            bezier            : logNearestBezier(mats),
+            loopSimplified    : logNearestLoopSimplified(mats),
+            loopset           : logNearestLoopSet(mats),
+            cp                : logCpNode(mats, stateControl),
             container         : logNearestContainer,
+            curvature         : logK(mats),
+            branch            : logBranch(mats),
+            curve             : logCurve(mats),
+            matCurve          : logMatCurve(mats),
+            salience          : logSalience(mats)
         }
         
-        let { clickFor, showDelay } = pageState;
+        const { clickFor, showDelay } = pageState;
         fs[clickFor](g, [viewboxX,viewboxY], showDelay);
     }
 }
 
 
-function gotoPrevViewbox(stateControl: StateControl) {
-    let { transientState, state, upd } = stateControl;
-    let { pageState } = state.appState;
+function gotoPrevViewbox(
+        stateControl: StateControl) {
+
+    const { transientState, state, upd } = stateControl;
+    const { pageState } = state.appState;
     let viewbox = transientState.viewboxStack.pop();
-    // let viewbox = pageState.viewboxStack.pop();
     if (!viewbox) {
-        let loops = _debug_.generated.elems.loop;
-        let bezierLoops = loops.map(loop => loop.beziers);
+        const { mats } = stateControl.state.appState.pageState.deduced;
+        const loops = mats.flatMap(mat => mat.meta.loops)
+        const bezierLoops = loops.map(loop => loop.beziers);
         viewbox = getViewBoxForShape(bezierLoops);
     }
 

@@ -63,11 +63,6 @@ h1 > a:hover {
 	stroke-dasharray: 0.5%;
 }
 
-.morphy {
-	fill: #fcc;
-	stroke: red;
-	stroke-width: 0.1%; 
-}
 
 .node-fill1 { fill: red; }
 .node-fill2 { fill: green; }
@@ -129,36 +124,26 @@ h1 > a:hover {
 .big {
 	stroke-width: 2;
 }
-.yellow { fill: yellow; stroke: yellow; }
-.orange { fill: orange; stroke: orange; }
 
-.blue1 { fill: #00f; stroke: #00f; }
-.blue2 { fill: #55f; stroke: #55f; }
-.blue3 { fill: #aaf; stroke: #99f; }
-
-
-.green-filled { fill: #0F0; stroke: #0F0; }
-.c1 { fill: #F00; stroke: #F00; }
-.c2 { fill: #0F0; stroke: #0F0; }
-.c3 { fill: #00F; stroke: #00F; }
-.c4 { fill: #F0F; stroke: #F0F; }
-.kappa { fill: #000; stroke: #000; }
-.invisible { opacity: 0; }
-
-.purple   { stroke: purple;  fill: purple;  }
-.gray     { stroke: #888;  fill: #888;  }
-.red      { stroke: #F00;  fill: #F00;  }
-.reddish  { stroke: #F11;  fill: #F11;  }
-.green    { stroke: #0F0;  fill: #0F0;  }
-.blue     { stroke: #00F;  fill: #00F;  }
-.blueish  { stroke: #11F;  fill: #11F;  }
-.cyan     { stroke: #0AA;  fill: #0AA;  }
-.pink     { stroke: pink;  fill: pink;  }
-.pinker   { stroke: #F0F;  fill: #F0F;  }
-.deeppink { stroke: deeppink;  fill: deeppink;  }
-.brown    { stroke: brown; fill: brown; }
-.black    { stroke: #000; }
-.darkgreen { stroke: #080; }
+.yellow    { stroke: #ffff00d0; fill: #ffff00d0; }
+.orange    { stroke: #ffa500d0; fill: #ffa500d0; }
+.blue1     { stroke: #0000ffd0; fill: #0000ffd0; }
+.blue2     { stroke: #5555ffd0; fill: #5555ffd0; }
+.blue3     { stroke: #9999ffd0; fill: #aaaaffd0; }
+.purple    { stroke: #a000a0d0; fill: #a000a0d0; }
+.gray      { stroke: #888888d0; fill: #888888d0; }
+.red       { stroke: #FF0000d0; fill: #FF0000d0; }
+.reddish   { stroke: #FF1111d0; fill: #FF1111d0; }
+.green     { stroke: #00FF00d0; fill: #00FF00d0; }
+.blue      { stroke: #0000FFd0; fill: #0000FFd0; }
+.blueish   { stroke: #1111FFd0; fill: #1111FFd0; }
+.cyan      { stroke: #00AAAAd0; fill: #00AAAAd0; }
+.pink      { stroke: #ffc0cbd0; fill: #ffc0cbd0; }
+.pinker    { stroke: #ff00ffd0; fill: #ff00ffd0;  }
+.deeppink  { stroke: #ff1493d0; fill: #ff1493d0; }
+.brown     { stroke: #a52a2ad0; fill: #a52a2ad0; }
+.black     { stroke: #000000d0; fill: #000000d0; }
+.darkgreen { stroke: #008800d0; fill: #008800d0; }
 
 .thin1  { stroke-width: 0.01%; }
 .thin2  { stroke-width: 0.02%; }
