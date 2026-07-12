@@ -22,7 +22,7 @@ function updDebugGlobal(
     //console.log(d)
     // d.directives.stopAfterHoleClosers = true;
     //d.directives.stopAfterTwoProngsNum = 1;
-    // d.directives.stopAfterTwoProngs = true;
+    d.directives.stopAfterTwoProngs = false;
     // d.directives.stopAfterThreeProngs = true;
     // d.directives.stopAfterThreeProngsNum = 1;  // not implemented
 

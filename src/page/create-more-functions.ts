@@ -1,7 +1,6 @@
-declare var _debug_: Debug; 
-
+import type { CurvePiece, CpNode } from 'flo-mat';
 import { drawFs } from 'flo-draw';
-import { getBoundaryPieceBeziers, Debug, CurvePiece, CpNode, CpNodeFs } from 'flo-mat';
+import { getBoundaryPieceBeziers, CpNodeFs } from 'flo-mat';
 import { showAndLogCp } from './show-and-log-cp';
 import { StateControl } from '../state-control/state-control';
 

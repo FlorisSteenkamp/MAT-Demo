@@ -1,10 +1,11 @@
-import { CpNode, CpNodeFs } from 'flo-mat';
+import type { CpNode } from 'flo-mat';
+import { enhanceCpNode, getProngCount, getRealProngCount, isTerminating, isFullyTerminating } from 'flo-mat';
 import { drawFs } from 'flo-draw';
-import { getInitialDegAngleBetweenMatCurves } from '../../../mat/src/cp-node/fs/get-angle-between-mat-curves';
-import { getNonTerminatingOnCircle } from '../../../mat/src/cp-node/fs/get-non-terminating-on-circle';
+// import { getInitialDegAngleBetweenMatCurves } from '../../../mat/src/cp-node/fs/get-angle-between-mat-curves';
+// import { getNonTerminatingOnCircle } from '../../../mat/src/cp-node/fs/get-non-terminating-on-circle';
 
 
-const { enhanceCpNode, getRealProngCount, getProngCount, isTerminating } = CpNodeFs;
+// const { enhanceCpNode, getRealProngCount, getProngCount, isTerminating } = CpNodeFs;
 
 
 function showAndLogCp(
@@ -13,8 +14,8 @@ function showAndLogCp(
         showDelay = 2000,
         scale = 1) {
 
-    let cp = cpNode.cp;
-    let pos = cp.pointOnShape;
+    // let cp = cpNode.cp;
+    // let pos = cp.pointOnShape;
     // drawFs.crossHair(g, pos.p, 'nofill thin5 red', scale*0.5, showDelay);
     drawFs.crossHair(g, cp.circle.center, 'nofill thin5 red', scale*0.5, showDelay);
     drawFs.line(g, [pos.p, cp.circle.center], 'nofill thin20 red', showDelay);
@@ -34,7 +35,21 @@ function showAndLogCp(
 
     // console.log(enhancedCpNode);
     // console.log(enhancedCpNode.ordering);
-    console.log(isTerminating(cpNode));
+    // console.log(
+    //     isTerminating(cpNode),
+    //     isFullyTerminating(cpNode),
+    //     cpNode.next === cpNode.nextOnCircle,
+    //     cpNode.cp.pointOnShape.p,
+    // );
+    // console.log(
+    //     isTerminating(cpNode),
+    //     isFullyTerminating(cpNode),
+    //     cpNode.cp.pointOnShape.p
+    // );
+    console.log(
+        cpNode.holeCloserTwin,
+        cpNode.isHoleClosing
+    );
     // console.log(traverseCp(cpNode).map(enhanceCpNode));
     // console.log('salience: ' + CpNodeFs.getSalience(cpNode));
     // console.log('p: ' + pos.p);

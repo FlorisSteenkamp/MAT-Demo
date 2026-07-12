@@ -1,7 +1,10 @@
 declare var _debug_: Debug;
 
-import { drawFs } from 'flo-draw';
-import { CpNodeFs, drawBeziersAsSinglePath, drawBranch, drawElemFs, getBranches, getSatCulls, Mat } from 'flo-mat';
+import type { Mat } from 'flo-mat';
+import {
+    CpNodeFs, drawBranch, drawElemFs, getBranches, getSatCulls, getHoleClosers,
+    traverseVertices, isOneProng, isSharp, getRealProngCount
+} from 'flo-mat';
 import { getAllOnLoop } from '../../../mat/src/cp-node/fs/get-all-on-loop';
 import { getLeaves } from '../../../mat/src/sat/get-leaves';
 import { DualSet, DualSetFs } from '../../../mat/src/utils/dual-set';
@@ -54,7 +57,7 @@ async function drawElements(
 
         for (const mat of mats) {
             if (elemType === 'holeCloser') {
-                const holeClosers = CpNodeFs.getHoleClosers(mat.cpNode);
+                const holeClosers = getHoleClosers(mat.cpNode);
                 for (const holeCloser of holeClosers) {
                     $elems.push(drawElemFs.holeCloser(
                         g, holeCloser, 'thin10 cyan nofill', 0, vbWidth/10)
@@ -91,17 +94,25 @@ async function drawElements(
                 $elems.push(drawElemFs.mat(g, mat, undefined, 0, vbWidth/10));
             }
 
+            if (elemType === 'oneProng') {
+                traverseVertices(mat.cpNode, cpNode => {
+                    if (isOneProng(cpNode) && !isSharp(cpNode)) {
+                        $elems.push(drawElemFs.oneProng(g, cpNode, undefined, 0, vbWidth/10))
+                    }
+                });
+            }
+
             if (elemType === 'twoProng') {
-                CpNodeFs.traverseVertices(mat.cpNode, cpNode => {
-                    if (CpNodeFs.getRealProngCount(cpNode) === 2) {
+                traverseVertices(mat.cpNode, cpNode => {
+                    if (getRealProngCount(cpNode) === 2) {
                         $elems.push(drawElemFs.twoProng(g, cpNode, undefined, 0, vbWidth/10))
                     }
                 });
             }
 
             if (elemType === 'threeProng') {
-                CpNodeFs.traverseVertices(mat.cpNode, cpNode => {
-                    if (CpNodeFs.getRealProngCount(cpNode) >= 3) {
+                traverseVertices(mat.cpNode, cpNode => {
+                    if (getRealProngCount(cpNode) >= 3) {
                         $elems.push(drawElemFs.threeProng(g, cpNode, undefined, 0, vbWidth/10))
                     }
                 });
@@ -135,7 +146,7 @@ async function drawElements(
             }
 
             if (elemType === 'vertex') {
-                CpNodeFs.traverseVertices(mat.cpNode, cpNode => {
+                traverseVertices(mat.cpNode, cpNode => {
                     $elems.push(drawElemFs.vertex(g, cpNode, undefined, 0, vbWidth/10))
                 });
             }

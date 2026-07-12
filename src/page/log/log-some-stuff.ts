@@ -2,12 +2,13 @@ declare var _debug_: Debug;
 
 import { Debug } from '../../debug';
 import { CpNodeFs } from 'flo-mat';
+import { mapObj } from '../../utils/map-obj';
 
 const { getProngCount } = CpNodeFs;
 
 
 function logSomeStuff(timingAll: number) {
-    console.log(`All took: ${timingAll.toFixed(0)} milliseconds.`);
+    // console.log(`All took: ${timingAll.toFixed(0)} milliseconds.`);
     
     function addToVertexCount(
             vertexCount: { [index: number]: number },
@@ -18,28 +19,32 @@ function logSomeStuff(timingAll: number) {
         vertexCount[n] += i;
     }
 
-    let vertexCount: { [index: number]: number } = {};
+    const vertexCount: { [index: number]: number } = {};
     
-    let generated = _debug_.generated;
+    const { generated } = _debug_;
+    const { elems, timing } = generated;
+    const { simplifyPaths, oneAnd2Prongs, threeProngs, holeClosers, simplifyMat, sats, normalize } = timing;
 
-    let elems = generated.elems;
+    // console.log(`All took ${timingAll.toFixed(0)} milliseconds; simplify-paths: ${simplifyPaths.toFixed(0)}; 1&2-prongs: ${oneAnd2Prongs.toFixed(0)}; 3-prongs: ${threeProngs.toFixed(0)}; hole-closers: ${holeClosers.toFixed(0)}; simplify-mats: ${simplifyMat.toFixed(0)}; sats: ${sats.toFixed(0)}; normalize: ${normalize.toFixed(0)}`);
+    console.log(`All took ${timingAll.toFixed(0)} milliseconds.`);
+    console.log(mapObj<any>(v => Math.round(v), timing));
 
-    // for (let i=0; i<elems.twoProng_regular.length; i++) {
-    //     let nProng = elems.twoProng_regular[i];
-    //     let n = getProngCount(nProng.cpNode);
+    // for (const i=0; i<elems.twoProng_regular.length; i++) {
+    //     const nProng = elems.twoProng_regular[i];
+    //     const n = getProngCount(nProng.cpNode);
     //     addToVertexCount(vertexCount, n, 1);
     // }
 
-    // for (let i=0; i<elems.twoProng_holeClosing.length; i++) {
-    //     let nProng = elems.twoProng_holeClosing[i];
-    //     let n = getProngCount(nProng.cpNode);
+    // for (const i=0; i<elems.twoProng_holeClosing.length; i++) {
+    //     const nProng = elems.twoProng_holeClosing[i];
+    //     const n = getProngCount(nProng.cpNode);
     //     addToVertexCount(vertexCount, n, 1);
     // }
 
     // addToVertexCount(vertexCount, 3, generated.elems.threeProng.length);
 
-    let timings = generated.timing;
-    let timingsOther = timingAll - 
+    const timings = generated.timing;
+    const timingsOther = timingAll - 
         timings.normalize -
         timings.simplifyPaths -
         timings.holeClosers -
@@ -49,7 +54,7 @@ function logSomeStuff(timingAll: number) {
         timings.simplifyMat
 
     
-    //for (let n in vertexCount) { console.log('# of '+n+'-prongs: ', vertexCount[n]); }
+    //for (const n in vertexCount) { console.log('# of '+n+'-prongs: ', vertexCount[n]); }
     // console.log(`    normalize paths    ${getTiming(timings.normalize)}`);
     // console.log(`    simplify paths     ${getTiming(timings.simplifyPaths)}`);
     // console.log(`    hole-closers       ${getTiming(timings.holeClosers)}`);

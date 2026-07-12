@@ -1,13 +1,14 @@
 declare var _debug_: Debug; 
 
-import { Container } from 'flo-boolean/node/container';
+import type { Debug } from '../../debug';
+// import type { Container } from 'flo-boolean/node/container';
 import { getClosestSquareDistanceToRect } from 'flo-mat';
-import { Debug } from '../../debug';
 
 
 function logNearestContainer(g: SVGGElement, p: number[], showDelay = 1000) {
     //let g;
-    let bestContainer: Container = undefined!;
+    // let bestContainer: Container = undefined!;
+    let bestContainer: any = undefined;
     let bestDistance = Number.POSITIVE_INFINITY;
 
     for (let container of _debug_.generated.elems.container) {

@@ -1,9 +1,10 @@
 const path = require('path');
 // const CircularDependencyPlugin = require('circular-dependency-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 
 const projectRoot = 'c:/projects/';
+const exportsProofMode = process.env.EXPORTS_PROOF === '1';
 
 
 module.exports = {
@@ -55,8 +56,28 @@ module.exports = {
         errors: true,
         builtAt: true
     },
+    plugins: [
+        // new BundleAnalyzerPlugin(
+        //     exportsProofMode
+        //         ? {
+        //             analyzerMode: 'disabled',
+        //             generateStatsFile: true,
+        //             statsFilename: 'stats-proof.json',
+        //             statsOptions: {
+        //                 all: false,
+        //                 modules: true,
+        //                 providedExports: true,
+        //                 usedExports: true,
+        //                 source: false
+        //             }
+        //         }
+        //         : {}
+        // )
+    ],
     optimization: {
         minimize: false
+        // minimize: true,
+        // concatenateModules: false
     },
     experiments: {
         outputModule: true

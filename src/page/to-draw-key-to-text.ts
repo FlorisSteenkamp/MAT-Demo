@@ -19,9 +19,8 @@ const toDrawKeyToText: { [P in keyof ToDraw]?: string } = {
 	// dullCorner: "Dull corners",
 
 	boundingHull: "hulls",
-	// oneProng: "1-prongs",
+	oneProng: "1-prongs",
 	// oneProngAtDullCorner: "1-prongs (dull corner)",
-	// twoProng_regular: "2-prongs",
 	// twoProng_holeClosing: "2-prongs (hole closing)",
 	twoProng: "2-prongs",
 	threeProng: "3-prongs",

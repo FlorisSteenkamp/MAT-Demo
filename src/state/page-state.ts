@@ -24,15 +24,15 @@ type ClickFor =
 
 interface PageState {
     /** Won't be save to localstorage */
-    deduced    : DeducedState;
-    showDelay  : number;
-    clickFor   : ClickFor;
-    viewbox    : number[][];
-    satScale   : number;
-    toDraw     : ToDraw;
-    glyphName: string;
-    viewMat: boolean;
-    simplify: boolean;
+    readonly deduced: DeducedState;
+    readonly showDelay: number;
+    readonly clickFor : ClickFor;
+    readonly viewbox: number[][];
+    readonly satScale: number;
+    readonly toDraw: ToDraw;
+    readonly glyphName: string;
+    readonly viewMat: boolean;
+    readonly simplify: boolean;
 }
 
 

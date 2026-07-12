@@ -181,8 +181,8 @@ function Page(props: Props) {
 				<Checkbox checked={pageState.simplify} styles={showThreeProngChangedStyles} text="simplify" onChanged={onSimplifyChanged} />
 				<Checkbox checked={pageState.viewMat} styles={showThreeProngChangedStyles} text="mat/sat" onChanged={onViewMatChanged} />
 			</Box>
-			<Grid container justifyContent="flex-start" spacing={2}>
-				<Grid>
+			<Grid container spacing={2}>
+				<Grid size="auto">
 					<FormControl variant="outlined" style={{ minWidth: '200px' }}>
 					<InputLabel id="select-outlined-label">Shape</InputLabel>
 					<Select
@@ -198,7 +198,7 @@ function Page(props: Props) {
 					</Select>
 					</FormControl>
 				</Grid>
-				<Grid style={{ minWidth: '150px'}}>
+				<Grid size="auto" style={{ minWidth: '150px'}}>
 					<Typography id="slider" gutterBottom>
 						SAT Scale
 					</Typography>
@@ -211,14 +211,14 @@ function Page(props: Props) {
 						onChange={satScaleChanged}
 					/>
 				</Grid>
-				<Grid style={{ minWidth: '150px'}}>
+				<Grid size="auto" style={{ minWidth: '150px'}}>
 					<Typography id="slider" gutterBottom>
 						Show delay
 					</Typography>
 					<Slider
 						value={pageState.showDelay}
 						aria-labelledby="slider"
-						min={0} max={5000} step={100}
+						min={0} max={50_000} step={100}
 						marks
 						valueLabelDisplay="auto"
 						onChange={showDelayChanged}
