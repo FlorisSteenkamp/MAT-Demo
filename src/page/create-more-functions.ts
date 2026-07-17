@@ -79,10 +79,9 @@ function createLoop(stateControl: StateControl) {
         if (current.cpNode === undefined) { return; }
 
         let cpNode = current.cpNode;
-        let bps = getBoundaryPieceBeziers([cpNode, cpNode]);
+        let bps = getBoundaryPieceBeziers([cpNode, cpNode]).filter(v => v !== undefined);
+
         showLoop(current.g, bps);
-        //console.log(bps)
-        //showAndLogCp(current.g, cpNode, pageState.showDelay);
     }
 }
 

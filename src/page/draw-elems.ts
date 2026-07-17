@@ -44,6 +44,7 @@ async function drawElements(
 
     const vbWidth = (viewbox[1][0] - viewbox[0][0]);
 
+    let num2Prongs = 0;
     const elemss$: SVGElement[][][] = [];
     for (const elemType_ in toDraws) {
         const elemType = elemType_ as keyof ToDraw;
@@ -83,12 +84,12 @@ async function drawElements(
                 $elems.push(drawElemFs.leaves(g, leaves, undefined, 0, vbWidth/10));
             }
 
-            if (elemType === 'speed') {
-                const cpNodes = getAllOnLoop(mat.cpNode);
-                for (const cpNode of cpNodes) {
-                    $elems.push(drawElemFs.speed(g, cpNode, undefined, 0, vbWidth/10, 40));
-                }
-            }
+            // if (elemType === 'speed') {
+            //     const cpNodes = getAllOnLoop(mat.cpNode);
+            //     for (const cpNode of cpNodes) {
+            //         $elems.push(drawElemFs.speed(g, cpNode, undefined, 0, vbWidth/10, 40));
+            //     }
+            // }
 
             if (elemType === 'mat') {
                 $elems.push(drawElemFs.mat(g, mat, undefined, 0, vbWidth/10));
@@ -106,6 +107,7 @@ async function drawElements(
                 traverseVertices(mat.cpNode, cpNode => {
                     if (getRealProngCount(cpNode) === 2) {
                         $elems.push(drawElemFs.twoProng(g, cpNode, undefined, 0, vbWidth/10))
+                        num2Prongs++;
                     }
                 });
             }
@@ -154,6 +156,8 @@ async function drawElements(
 
         elemss$.push($elems);
     }
+
+    // console.log(`# 2-prongs: ${num2Prongs}`);
 
     return elemss$;
 }

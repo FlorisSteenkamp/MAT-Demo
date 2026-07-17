@@ -10,7 +10,7 @@ function getNearestCpNode(
     const cpNodes = mats.flatMap(mat => CpNodeFs.getAllOnLoop(mat.cpNode));
     
     return getNearest(
-        (p, t) => distanceBetween(p, t.cp.pointOnShape.p),
+        (p, t) => distanceBetween(p, t.pointOnShape.p),
         cpNodes,
         p
     );

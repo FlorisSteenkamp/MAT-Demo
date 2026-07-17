@@ -16,10 +16,11 @@ function showAndLogCp(
 
     // let cp = cpNode.cp;
     // let pos = cp.pointOnShape;
+    const pos = cpNode.pointOnShape;
     // drawFs.crossHair(g, pos.p, 'nofill thin5 red', scale*0.5, showDelay);
-    drawFs.crossHair(g, cp.circle.center, 'nofill thin5 red', scale*0.5, showDelay);
-    drawFs.line(g, [pos.p, cp.circle.center], 'nofill thin20 red', showDelay);
-    drawFs.circle(g, cp.circle, 'nofill thin5 blue', showDelay)
+    drawFs.crossHair(g, pos.circle.center, 'nofill thin5 red', scale*0.5, showDelay);
+    drawFs.line(g, [pos.p, pos.circle.center], 'nofill thin20 red', showDelay);
+    drawFs.circle(g, pos.circle, 'nofill thin5 blue', showDelay)
     
     // Log
     const prongCount = getProngCount(cpNode);
@@ -47,9 +48,19 @@ function showAndLogCp(
     //     cpNode.cp.pointOnShape.p
     // );
     console.log(
-        cpNode.holeCloserTwin,
-        cpNode.isHoleClosing
+        // cpNode.holeCloserTwin,
+        // cpNode.isHoleClosing
+        pos
     );
+
+    // if (pos.curvePieces) {
+    //     const { curvePieces } = pos;
+    //     for (let curvePiece of curvePieces) {
+    //         const { curve, ts } = curvePiece;
+    //         const { ps } = curve;
+    //         drawFs.bezierPiece(g, ps, ts, 'nofill thin20 red', 2*showDelay);
+    //     }
+    // }
     // console.log(traverseCp(cpNode).map(enhanceCpNode));
     // console.log('salience: ' + CpNodeFs.getSalience(cpNode));
     // console.log('p: ' + pos.p);
@@ -57,3 +68,4 @@ function showAndLogCp(
 
 
 export { showAndLogCp }
+

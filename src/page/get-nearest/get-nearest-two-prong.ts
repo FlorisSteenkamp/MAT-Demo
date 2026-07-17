@@ -19,7 +19,7 @@ function getNearestTwoProng(
     })
     
     return getNearest(
-        (p, t) => distanceBetween(p, t.cp.circle.center),
+        (p, t) => distanceBetween(p, t.pointOnShape.circle.center),
         cpNodes,
         p
     );

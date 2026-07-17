@@ -11,7 +11,7 @@ const toDrawKeyToText: { [P in keyof ToDraw]?: string } = {
 
 	mat: "MAT",
 	// sat: "SAT",
-	speed: "Speed",
+	// speed: "Speed",
 
 	looseBoundingBox: "Loose bbs",
 	tightBoundingBox: "Tight bbs",
