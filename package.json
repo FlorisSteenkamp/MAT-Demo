@@ -18,10 +18,10 @@
         "@mui/icons-material": "^9.2.0",
         "@mui/material": "^9.2.0",
         "cheerio": "^1.2.0",
-        "flo-bezier3": "^7.0.3",
+        "flo-bezier3": "^8.0.5",
         "flo-boolean": "^5.0.5",
         "flo-draw": "^2.0.5",
-        "flo-mat": "^3.0.14",
+        "flo-mat": "^4.0.1",
         "flo-poly": "^8.1.2",
         "flo-vector2d": "^4.0.6",
         "ramda": "^0.32.0",
@@ -38,7 +38,7 @@
         "ts-loader": "^9.6.2",
         "typescript": "^6.0.3",
         "webpack": "^5.108.4",
-        "webpack-bundle-analyzer": "^5.3.0",
+        "webpack-bundle-analyzer": "^5.3.1",
         "webpack-cli": "^7.2.1"
     },
     "scripts": {
