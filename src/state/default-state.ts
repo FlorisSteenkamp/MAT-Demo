@@ -39,8 +39,8 @@ const defaultPageState: PageState = {
     satScale: 1.5,
     // @ts-ignore
     toDraw: defaultToDraw,
-    viewbox: [[0,0],[100,100]],
-    glyphName : 'Mt7',
+    viewbox: [[0,0],[1450,1450]],
+    glyphName : 'quotedbl',
     viewMat: true,
     simplify: true,
 }
